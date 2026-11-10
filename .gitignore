@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output
+frontend/dist/
+
+# Environment (never commit secrets; .env.example is the template)
+.env
+.env.*
+!.env.example
+
+# Raw dataset downloads (the seed script fetches these)
+backend/scripts/data/
+
+# Logs and caches
+*.log
+npm-debug.log*
+.eslintcache
+coverage/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
