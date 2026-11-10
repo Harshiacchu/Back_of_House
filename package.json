@@ -1,0 +1,44 @@
+{
+  "name": "back-of-house",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Boston restaurant inspections decoded into plain-English kitchen reports, visit logs and group dinner polls.",
+  "license": "MIT",
+  "author": "Harshitha Seetharaman, Ayush Nimeshkumar Patel",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Harshiacchu/Back_of_House.git"
+  },
+  "engines": {
+    "node": ">=20.19"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace backend & npm run dev --workspace frontend",
+    "dev:backend": "npm run dev --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "build": "npm run build --workspace frontend",
+    "start": "npm start --workspace backend",
+    "seed": "npm run seed --workspace backend",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run lint && npm run format:check"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.14.0",
+    "prettier": "^3.9.10"
+  }
+}

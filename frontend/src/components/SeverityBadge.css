@@ -1,0 +1,30 @@
+.severity-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35em;
+  padding: 3px 10px;
+  border-radius: 980px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.severity-badge strong {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.severity-badge--low {
+  background: var(--color-severity-low-tint);
+  color: var(--color-severity-low);
+}
+
+.severity-badge--medium {
+  background: var(--color-severity-medium-tint);
+  color: var(--color-severity-medium);
+}
+
+.severity-badge--high {
+  background: var(--color-severity-high-tint);
+  color: var(--color-severity-high);
+}

@@ -1,0 +1,32 @@
+.verify-page__email {
+  color: var(--color-text);
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.verify-page__form {
+  display: grid;
+  gap: 18px;
+}
+
+.verify-page__resend {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.verify-page__resend-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-link);
+  font-variant-numeric: tabular-nums;
+}
+
+.verify-page__resend-button:disabled {
+  color: var(--color-text-tertiary);
+}
+
+.verify-page__resend-button:not(:disabled):hover {
+  text-decoration: underline;
+}

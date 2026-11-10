@@ -1,0 +1,23 @@
+# Single source of truth for who may WRITE each path. Last matching line wins.
+# Everyone may READ everything. Enforced on GitHub by branch protection ("Require review from Code Owners").
+
+# ------------------------------------------------------------------ Harshitha
+# Default owner: repo foundation, tooling, shared frontend + backend core.
+*                                       @Harshiacchu
+
+# ---------------------------------------------------------------------- Ayush
+# Group Picks
+/backend/src/features/polls/            @ayushp2207
+/frontend/src/features/polls/           @ayushp2207
+/frontend/src/api/polls.js              @ayushp2207
+# My Spots
+/backend/src/features/spots/            @ayushp2207
+/frontend/src/features/spots/           @ayushp2207
+/frontend/src/api/spots.js              @ayushp2207
+# Design doc, mockups, README polish, deployment
+/docs/DESIGN.md                         @ayushp2207
+/docs/mockups/                          @ayushp2207
+/README.md                              @ayushp2207
+/render.yaml                            @ayushp2207
+/.github/workflows/                     @ayushp2207
+/docs/tasks/ayush.md                    @ayushp2207

@@ -1,0 +1,19 @@
+.photo-credits {
+  max-width: var(--wide-width);
+  margin: 0 auto;
+  padding: var(--space-3) 22px;
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+
+.photo-credits summary {
+  cursor: pointer;
+}
+
+.photo-credits ul {
+  display: grid;
+  gap: 4px;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}

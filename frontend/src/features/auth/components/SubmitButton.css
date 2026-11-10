@@ -1,0 +1,19 @@
+.submit-button {
+  min-height: 52px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background: var(--color-accent-hover);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}

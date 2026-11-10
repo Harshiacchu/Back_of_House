@@ -1,0 +1,64 @@
+.restaurant-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.restaurant-filters__query {
+  flex: 1 1 300px;
+}
+
+.restaurant-filters__hood {
+  flex: 0 1 220px;
+}
+
+.restaurant-filters__query input {
+  border-radius: 980px;
+  padding-left: 22px;
+}
+
+.restaurant-filters__trend {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.restaurant-filters__trend legend {
+  margin-bottom: 6px;
+  padding: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+/* Segmented control */
+.restaurant-filters__toggle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: 3px;
+  border-radius: 980px;
+  background: rgb(0 0 0 / 6%);
+}
+
+.restaurant-filters__chip {
+  min-height: 42px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 980px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition:
+    background-color 0.25s,
+    color 0.25s,
+    box-shadow 0.25s;
+}
+
+.restaurant-filters__chip[aria-pressed='true'] {
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+}

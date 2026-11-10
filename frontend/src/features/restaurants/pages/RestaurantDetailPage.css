@@ -1,0 +1,80 @@
+.restaurant-detail {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.restaurant-detail__back {
+  justify-self: start;
+  font-size: 0.95rem;
+}
+
+.restaurant-detail__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.restaurant-detail__heading {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.restaurant-detail__name {
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.restaurant-detail__address {
+  font-size: 1.15rem;
+  color: var(--color-text-secondary);
+}
+
+.restaurant-detail__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.restaurant-detail__last {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 28px;
+  border-radius: var(--radius);
+  background: var(--color-surface-dark);
+  color: var(--color-text-inverse);
+}
+
+.restaurant-detail__last .eyebrow {
+  color: var(--color-text-tertiary);
+}
+
+.restaurant-detail__last-date {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.restaurant-detail__last-result {
+  font-weight: 600;
+}
+
+.restaurant-detail__last-count {
+  margin-top: auto;
+  font-size: 0.85rem;
+  color: var(--color-text-tertiary);
+}
+
+.restaurant-detail__history {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.restaurant-detail__history h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
