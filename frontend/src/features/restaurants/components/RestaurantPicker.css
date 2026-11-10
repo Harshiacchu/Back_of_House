@@ -1,0 +1,81 @@
+.restaurant-picker {
+  display: grid;
+  gap: 6px;
+}
+
+.restaurant-picker__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.restaurant-picker__input {
+  min-height: 48px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  font-size: 1rem;
+}
+
+.restaurant-picker__input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(0 113 227 / 15%);
+}
+
+.restaurant-picker__results {
+  display: grid;
+  margin: 0;
+  padding: 6px;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+  list-style: none;
+}
+
+.restaurant-picker__option {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: var(--tap);
+  padding: 0 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+  align-items: center;
+}
+
+.restaurant-picker__option:hover {
+  background: var(--color-bg-alt);
+}
+
+.restaurant-picker__option strong {
+  font-weight: 500;
+}
+
+.restaurant-picker__option span {
+  font-size: 0.85rem;
+  color: var(--color-text-tertiary);
+}
+
+.restaurant-picker__hint {
+  padding: 10px 12px;
+  color: var(--color-text-secondary);
+}
+
+.restaurant-picker__chosen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: 4px 6px 4px var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-alt);
+  font-weight: 600;
+}

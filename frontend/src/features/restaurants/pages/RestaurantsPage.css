@@ -1,0 +1,19 @@
+.restaurants-page__count {
+  margin-bottom: var(--space-3);
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.restaurants-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: opacity 0.2s;
+}
+
+.restaurants-page__grid[aria-busy='true'] {
+  opacity: 0.5;
+}
