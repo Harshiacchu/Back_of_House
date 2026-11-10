@@ -1,0 +1,28 @@
+{
+  "name": "back-of-house-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Express + MongoDB API for Back of House.",
+  "type": "module",
+  "main": "src/server.js",
+  "license": "MIT",
+  "author": "Harshitha Seetharaman, Ayush Nimeshkumar Patel",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node scripts/seed-inspections.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "connect-mongo": "^6.0.0",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "express-session": "^1.19.0",
+    "mongodb": "^7.8.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
+  }
+}
