@@ -1,0 +1,4 @@
+.login-page__form {
+  display: grid;
+  gap: 18px;
+}

@@ -1,0 +1,15 @@
+.form-alert {
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+}
+
+.form-alert--error {
+  background: var(--color-severity-high-tint);
+  color: var(--color-severity-high);
+}
+
+.form-alert--info {
+  background: var(--color-bg-alt);
+  color: var(--color-text-secondary);
+}

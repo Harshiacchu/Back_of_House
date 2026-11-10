@@ -1,0 +1,10 @@
+.register-page__form {
+  display: grid;
+  gap: 18px;
+}
+
+.register-page__note {
+  font-size: 0.85rem;
+  color: var(--color-text-tertiary);
+  text-align: center;
+}

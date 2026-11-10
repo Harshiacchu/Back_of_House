@@ -1,0 +1,17 @@
+.not-found {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-7) 0;
+  text-align: center;
+}
+
+.not-found__title {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 700;
+}
+
+.not-found__lead {
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+}

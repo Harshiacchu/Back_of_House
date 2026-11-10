@@ -1,0 +1,36 @@
+.error-message {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+  color: var(--color-text);
+}
+
+.error-message p::before {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: var(--color-severity-high);
+  vertical-align: middle;
+  content: '';
+}
+
+.error-message__retry {
+  min-height: 36px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-link);
+  font-size: 0.95rem;
+}
+
+.error-message__retry:hover {
+  text-decoration: underline;
+}
