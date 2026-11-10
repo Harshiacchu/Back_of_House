@@ -1,0 +1,67 @@
+.intro {
+  --section-pad: clamp(3.5rem, 8vw, 5.5rem);
+}
+
+.intro__hero {
+  display: flex;
+  align-items: flex-end;
+  min-height: min(88vh, 820px);
+  padding: 22px 22px clamp(3.5rem, 8vw, 5.5rem);
+  background:
+    linear-gradient(180deg, rgb(0 0 0 / 15%) 0%, rgb(0 0 0 / 55%) 55%, #000000 100%),
+    var(--hero-photo) center 30% / cover no-repeat;
+  color: #ffffff;
+}
+
+.intro__hero-text {
+  display: grid;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: var(--wide-width);
+  margin: 0 auto;
+}
+
+.intro__eyebrow {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffb340;
+}
+
+.intro__title {
+  max-width: 11em;
+  font-size: clamp(3rem, 8.5vw, 6.5rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+}
+
+.intro__lead {
+  max-width: 30em;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  line-height: 1.35;
+  color: rgb(255 255 255 / 80%);
+}
+
+.intro__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.intro__cta {
+  min-height: 52px;
+  padding: 0 1.8rem;
+  background: #ffffff;
+  color: var(--color-text);
+  font-size: 1.05rem;
+}
+
+.intro__cta:hover {
+  background: rgb(255 255 255 / 88%);
+}
+
+.intro__more {
+  color: #ffffff;
+}

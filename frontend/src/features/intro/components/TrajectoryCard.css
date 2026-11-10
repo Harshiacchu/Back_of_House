@@ -1,0 +1,117 @@
+.trajectory-card {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  padding: clamp(26px, 3.5vw, 40px);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.trajectory-card__title {
+  font-size: clamp(1.6rem, 2.6vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.trajectory-card__toggle {
+  display: inline-flex;
+  justify-self: start;
+  padding: 3px;
+  border-radius: 980px;
+  background: rgb(0 0 0 / 6%);
+}
+
+.trajectory-card__option {
+  min-height: 38px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 980px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition:
+    background-color 0.25s,
+    color 0.25s,
+    box-shadow 0.25s;
+}
+
+.trajectory-card__option[aria-pressed='true'] {
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+}
+
+.trajectory-card__chart {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.trajectory-card__grid {
+  stroke: var(--color-hairline);
+}
+
+.trajectory-card__line {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: trajectory-draw 1.1s var(--ease-out) forwards;
+}
+
+.trajectory-card__dot {
+  opacity: 0;
+  animation: trajectory-dot 0.3s ease-out 1s forwards;
+}
+
+.trajectory-card__chart--improving .trajectory-card__line {
+  stroke: var(--color-trend-improving);
+}
+
+.trajectory-card__chart--improving .trajectory-card__dot {
+  fill: var(--color-trend-improving);
+}
+
+.trajectory-card__chart--steady .trajectory-card__line {
+  stroke: var(--color-trend-steady);
+}
+
+.trajectory-card__chart--steady .trajectory-card__dot {
+  fill: var(--color-trend-steady);
+}
+
+.trajectory-card__chart--slipping .trajectory-card__line {
+  stroke: var(--color-trend-slipping);
+}
+
+.trajectory-card__chart--slipping .trajectory-card__dot {
+  fill: var(--color-trend-slipping);
+}
+
+.trajectory-card__caption {
+  color: var(--color-text-secondary);
+}
+
+.trajectory-card__caption strong {
+  color: var(--color-text);
+}
+
+.trajectory-card__caption span {
+  color: var(--color-text-tertiary);
+  font-size: 0.85rem;
+}
+
+@keyframes trajectory-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes trajectory-dot {
+  to {
+    opacity: 1;
+  }
+}
