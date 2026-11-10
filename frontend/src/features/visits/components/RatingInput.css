@@ -1,0 +1,38 @@
+.rating-input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.rating-input legend {
+  margin-bottom: 6px;
+  padding: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.rating-input__stars {
+  display: flex;
+  gap: 2px;
+}
+
+.rating-input__star {
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: var(--color-border);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.rating-input__star.is-on {
+  color: #bf8b2e;
+}
+
+.rating-input__star:has(input:focus-visible) {
+  outline: 3px solid var(--color-focus);
+}
