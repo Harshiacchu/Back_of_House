@@ -55,6 +55,28 @@ export async function update(id, creatorId, fields) {
   return matchedCount > 0;
 }
 
+// One vote per user: change it if they already voted, otherwise add it. The $ne filter on the
+// push keeps two quick clicks from ever adding a second vote.
+export async function castVote(id, voter, restaurantId) {
+  const now = new Date();
+  const changed = await polls().updateOne(
+    { _id: id, 'votes.userId': voter.id },
+    {
+      $set: { 'votes.$.restaurantId': restaurantId, 'votes.$.votedAt': now, updatedAt: now },
+    },
+  );
+  if (changed.matchedCount > 0) return;
+  await polls().updateOne(
+    { _id: id, 'votes.userId': { $ne: voter.id } },
+    {
+      $push: {
+        votes: { userId: voter.id, voterName: voter.displayName, restaurantId, votedAt: now },
+      },
+      $set: { updatedAt: now },
+    },
+  );
+}
+
 export async function remove(id, creatorId) {
   const { deletedCount } = await polls().deleteOne({ _id: id, creatorId });
   return deletedCount > 0;
