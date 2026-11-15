@@ -74,10 +74,16 @@ router.get('/', async (req, res) => {
   const userId = userIdOf(req);
   const items = await listForUser(userId);
   res.json({
-    items: items.map((poll) => ({
-      ...toPublicPoll(poll, userId),
-      restaurantNames: poll.restaurants.map((r) => r.name),
-    })),
+    items: items.map((poll) => {
+      const names = new Map(poll.restaurants.map((r) => [String(r._id), r.name]));
+      return {
+        ...toPublicPoll(poll, userId),
+        // Candidates in the order the creator picked them ($lookup doesn't keep order).
+        restaurants: poll.restaurantIds
+          .filter((id) => names.has(String(id)))
+          .map((id) => ({ _id: id, name: names.get(String(id)) })),
+      };
+    }),
   });
 });
 

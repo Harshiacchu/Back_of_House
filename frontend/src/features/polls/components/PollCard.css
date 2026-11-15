@@ -1,0 +1,61 @@
+.poll-card {
+  display: grid;
+  gap: var(--space-2);
+  height: 100%;
+  padding: 24px;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.poll-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.poll-card__title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.poll-card__title a {
+  color: inherit;
+}
+
+.poll-card__candidates {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-alt);
+  font-size: 0.9rem;
+  list-style: none;
+}
+
+.poll-card__votes {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.poll-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-2);
+  font-size: 0.9rem;
+}
+
+.poll-card__open {
+  flex: 1 0 100%;
+  font-size: 0.95rem;
+}
