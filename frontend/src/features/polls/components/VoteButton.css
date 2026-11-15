@@ -1,0 +1,13 @@
+.vote-button {
+  width: 100%;
+}
+
+.vote-button--chosen {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.vote-button--chosen:disabled {
+  opacity: 1;
+  cursor: default;
+}
