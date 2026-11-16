@@ -94,3 +94,5 @@ export default function RestaurantsPage() {
     </section>
   );
 }
+
+RestaurantsPage.propTypes = {};

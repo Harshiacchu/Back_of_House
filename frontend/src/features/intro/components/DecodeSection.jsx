@@ -44,3 +44,5 @@ export default function DecodeSection() {
     </section>
   );
 }
+
+DecodeSection.propTypes = {};

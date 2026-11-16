@@ -73,3 +73,5 @@ export default function TrajectoryCard() {
     </article>
   );
 }
+
+TrajectoryCard.propTypes = {};

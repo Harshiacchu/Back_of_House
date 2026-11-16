@@ -48,3 +48,5 @@ export default function IntroPage() {
     </div>
   );
 }
+
+IntroPage.propTypes = {};
