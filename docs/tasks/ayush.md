@@ -32,7 +32,10 @@ in the navbar. Your pages are empty shells. See `docs/PROJECT_PLAN.md` §1a for 
 
 _(Write here when you need something changed in Harshitha's files. She makes the change.)_
 
-- none yet
+- `AuthProvider.jsx`: in dev (React StrictMode) the first `getMe` is aborted, but its `.catch` and
+  `.finally` still run `setUser(null)` / `setLoading(false)`, so opening a private link directly
+  (e.g. a shared `/polls/:id`) bounces to `/login` before the real `getMe` lands. Skip both when
+  `controller.signal.aborted`. Production is unaffected (no StrictMode).
 
 ## Notes
 
