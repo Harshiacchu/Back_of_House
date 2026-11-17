@@ -1,0 +1,43 @@
+.poll-form {
+  display: grid;
+  gap: 20px;
+  margin-bottom: var(--space-5);
+  padding: clamp(24px, 4vw, 40px);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+}
+
+.poll-form__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.poll-form__candidates {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.poll-form__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.poll-form__count {
+  color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.poll-form__note {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.poll-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}

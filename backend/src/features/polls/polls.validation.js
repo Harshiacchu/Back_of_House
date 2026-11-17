@@ -27,3 +27,12 @@ export function parsePollInput(body) {
 
   return { title: title.trim(), restaurantIds: ids };
 }
+
+// { restaurantId } -> the id string; checking it is on the poll happens in the route.
+export function parseVoteInput(body) {
+  const { restaurantId } = requireObjectBody(body);
+  const v = validator();
+  v.check(isObjectIdString(restaurantId), 'restaurantId', 'Pick a restaurant to vote for');
+  v.done();
+  return restaurantId;
+}

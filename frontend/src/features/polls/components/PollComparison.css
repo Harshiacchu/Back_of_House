@@ -1,0 +1,17 @@
+.poll-comparison {
+  display: grid;
+  grid-template-columns: repeat(var(--columns, 3), minmax(220px, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+}
+
+@media (width <= 720px) {
+  .poll-comparison {
+    grid-template-columns: 1fr;
+    overflow-x: visible;
+  }
+}

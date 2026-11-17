@@ -1,0 +1,34 @@
+.candidate-list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: candidate;
+}
+
+.candidate-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 10px 10px 10px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-alt);
+  counter-increment: candidate;
+}
+
+.candidate-list__name {
+  font-weight: 500;
+}
+
+.candidate-list__name::before {
+  content: counter(candidate) '. ';
+  color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.candidate-list__empty {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}

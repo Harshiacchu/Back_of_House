@@ -1,9 +1,9 @@
 import { ObjectId } from 'mongodb';
 import { Router } from 'express';
 
-import { create, findById, listForUser, remove, update } from './polls.repository.js';
-import { parsePollInput } from './polls.validation.js';
-import { forbidden, notFound } from '../../lib/errors.js';
+import { castVote, create, findById, listForUser, remove, update } from './polls.repository.js';
+import { parsePollInput, parseVoteInput } from './polls.validation.js';
+import { ValidationError, forbidden, notFound } from '../../lib/errors.js';
 import { toObjectId } from '../../lib/validation.js';
 import { findSummariesByIds } from '../restaurants/restaurants.repository.js';
 
@@ -23,6 +23,29 @@ function toPublicPoll(poll, userId) {
     totalVotes: poll.votes.length,
     createdAt: poll.createdAt,
     updatedAt: poll.updatedAt,
+  };
+}
+
+// The shareable view: each candidate's kitchen summary side by side, with its vote count and
+// the names of who picked it, in the order the creator listed them.
+async function toPollDetail(poll, userId) {
+  const summaries = await findSummariesByIds(poll.restaurantIds);
+  const byId = new Map(summaries.map((r) => [String(r._id), r]));
+  const myVote = poll.votes.find((vote) => vote.userId.equals(userId));
+  const candidates = poll.restaurantIds
+    .filter((id) => byId.has(String(id)))
+    .map((id) => {
+      const votes = poll.votes.filter((vote) => vote.restaurantId.equals(id));
+      return {
+        restaurant: byId.get(String(id)),
+        voteCount: votes.length,
+        voterNames: votes.map((vote) => vote.voterName),
+      };
+    });
+  return {
+    poll: toPublicPoll(poll, userId),
+    candidates,
+    myVote: myVote ? myVote.restaurantId : null,
   };
 }
 
@@ -51,10 +74,16 @@ router.get('/', async (req, res) => {
   const userId = userIdOf(req);
   const items = await listForUser(userId);
   res.json({
-    items: items.map((poll) => ({
-      ...toPublicPoll(poll, userId),
-      restaurantNames: poll.restaurants.map((r) => r.name),
-    })),
+    items: items.map((poll) => {
+      const names = new Map(poll.restaurants.map((r) => [String(r._id), r.name]));
+      return {
+        ...toPublicPoll(poll, userId),
+        // Candidates in the order the creator picked them ($lookup doesn't keep order).
+        restaurants: poll.restaurantIds
+          .filter((id) => names.has(String(id)))
+          .map((id) => ({ _id: id, name: names.get(String(id)) })),
+      };
+    }),
   });
 });
 
@@ -65,7 +94,7 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  res.json({ poll: toPublicPoll(await findOrThrow(req), userIdOf(req)) });
+  res.json(await toPollDetail(await findOrThrow(req), userIdOf(req)));
 });
 
 router.put('/:id', async (req, res) => {
@@ -79,6 +108,16 @@ router.delete('/:id', async (req, res) => {
   const poll = await requireCreator(req);
   if (!(await remove(poll._id, userIdOf(req)))) throw notFound('Poll');
   res.status(204).end();
+});
+
+router.post('/:id/vote', async (req, res) => {
+  const poll = await findOrThrow(req);
+  const restaurantId = new ObjectId(parseVoteInput(req.body));
+  if (!poll.restaurantIds.some((id) => id.equals(restaurantId))) {
+    throw new ValidationError({ restaurantId: 'That restaurant isn’t on this poll' });
+  }
+  await castVote(poll._id, { id: userIdOf(req), displayName: req.user.displayName }, restaurantId);
+  res.json(await toPollDetail(await findById(poll._id), userIdOf(req)));
 });
 
 export default router;
