@@ -1,0 +1,9 @@
+.visit-item-skeleton {
+  align-content: start;
+  gap: var(--space-3);
+}
+
+.visit-item-skeleton__actions {
+  display: flex;
+  gap: var(--space-2);
+}

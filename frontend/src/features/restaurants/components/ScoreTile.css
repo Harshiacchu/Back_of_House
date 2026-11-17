@@ -1,0 +1,77 @@
+.score-tile {
+  display: grid;
+  flex: none;
+  place-content: center;
+  border-radius: var(--radius);
+  text-align: center;
+  line-height: 1;
+}
+
+.score-tile strong {
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.score-tile__label {
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* Sizes */
+.score-tile--small {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+}
+
+.score-tile--small strong {
+  font-size: 1.3rem;
+}
+
+.score-tile--small .score-tile__label {
+  font-size: 0.62rem;
+}
+
+.score-tile--medium {
+  width: 68px;
+  height: 68px;
+}
+
+.score-tile--medium strong {
+  font-size: 1.75rem;
+}
+
+.score-tile--medium .score-tile__label {
+  font-size: 0.7rem;
+}
+
+.score-tile--large {
+  width: 132px;
+  height: 132px;
+  border-radius: var(--radius-lg);
+}
+
+.score-tile--large strong {
+  font-size: 3.4rem;
+}
+
+.score-tile--large .score-tile__label {
+  margin-top: 6px;
+  font-size: 0.95rem;
+}
+
+/* Severity levels */
+.score-tile--level-low {
+  background: var(--color-severity-low-tint);
+  color: var(--color-severity-low);
+}
+
+.score-tile--level-medium {
+  background: var(--color-severity-medium-tint);
+  color: var(--color-severity-medium);
+}
+
+.score-tile--level-high {
+  background: var(--color-severity-high-tint);
+  color: var(--color-severity-high);
+}

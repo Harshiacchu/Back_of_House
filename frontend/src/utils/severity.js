@@ -31,3 +31,4 @@ const CATEGORY_LABELS = {
 };
 
 export const categoryLabel = (key) => CATEGORY_LABELS[key] ?? key;
+export const CATEGORY_KEYS = Object.keys(CATEGORY_LABELS);

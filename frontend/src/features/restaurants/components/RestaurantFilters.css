@@ -1,36 +1,96 @@
 .restaurant-filters {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.restaurant-filters__row {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   gap: var(--space-3) var(--space-4);
-  margin-bottom: var(--space-5);
 }
 
 .restaurant-filters__query {
-  flex: 1 1 300px;
+  flex: 1 1 320px;
+  min-width: 0;
 }
 
 .restaurant-filters__hood {
-  flex: 0 1 220px;
+  flex: 0 1 240px;
 }
 
-.restaurant-filters__query input {
+.restaurant-filters__sort {
+  flex: 0 1 200px;
+}
+
+.restaurant-filters__field {
+  display: grid;
+  gap: 6px;
+}
+
+.restaurant-filters__label,
+.restaurant-filters__group legend {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+/* Native <select> dressed as a filled pill, matching the search box and toggles */
+.restaurant-filters__select {
+  position: relative;
+  display: block;
+}
+
+.restaurant-filters__select::after {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--color-text-secondary);
+  border-bottom: 2px solid var(--color-text-secondary);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+  content: '';
+}
+
+.restaurant-filters__select select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 48px 0 20px;
+  border: 0;
   border-radius: 980px;
-  padding-left: 22px;
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+  font-size: 0.95rem;
+  font-weight: 500;
+  appearance: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-.restaurant-filters__trend {
+.restaurant-filters__select select:hover {
+  background: var(--color-hairline);
+}
+
+.restaurant-filters__select select:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.restaurant-filters__group {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-.restaurant-filters__trend legend {
+.restaurant-filters__group legend {
   margin-bottom: 6px;
   padding: 0;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-text-secondary);
 }
 
 /* Segmented control */
@@ -39,7 +99,7 @@
   flex-wrap: wrap;
   padding: 3px;
   border-radius: 980px;
-  background: rgb(0 0 0 / 6%);
+  background: var(--color-bg-alt);
 }
 
 .restaurant-filters__chip {
@@ -51,14 +111,27 @@
   color: var(--color-text-secondary);
   font-size: 0.9rem;
   font-weight: 500;
+  font-variant-numeric: tabular-nums;
   transition:
     background-color 0.25s,
     color 0.25s,
     box-shadow 0.25s;
 }
 
+.restaurant-filters__chip--narrow {
+  min-width: 48px;
+  padding: 0 12px;
+}
+
 .restaurant-filters__chip[aria-pressed='true'] {
   background: var(--color-surface);
   color: var(--color-text);
-  box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 640px) {
+  .restaurant-filters__hood,
+  .restaurant-filters__sort {
+    flex-basis: 100%;
+  }
 }

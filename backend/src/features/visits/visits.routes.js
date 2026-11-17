@@ -1,7 +1,14 @@
 import { ObjectId } from 'mongodb';
 import { Router } from 'express';
 
-import { create, findForUser, listForUser, remove, update } from './visits.repository.js';
+import {
+  create,
+  findForUser,
+  listForUser,
+  recapForUser,
+  remove,
+  update,
+} from './visits.repository.js';
 import { parseVisitInput } from './visits.validation.js';
 import { notFound } from '../../lib/errors.js';
 import { toObjectId } from '../../lib/validation.js';
@@ -20,6 +27,14 @@ async function parseWithRestaurant(body) {
 
 router.get('/', async (req, res) => {
   res.json({ items: await listForUser(userIdOf(req)) });
+});
+
+// GET /api/visits/recap?year=2026 -> { year, meals, neighborhoods, cleanShare, ... }
+router.get('/recap', async (req, res) => {
+  const thisYear = new Date().getUTCFullYear();
+  const year = Number.parseInt(req.query.year, 10);
+  const valid = Number.isInteger(year) && year >= 2000 && year <= thisYear;
+  res.json({ recap: await recapForUser(userIdOf(req), valid ? year : thisYear) });
 });
 
 router.post('/', async (req, res) => {

@@ -63,6 +63,86 @@ export async function findForUser(id, userId) {
   return visit ?? null;
 }
 
+// Severity bands, matching the frontend's severity.js: under 20 is clean, 50+ is serious.
+const CLEAN_BELOW = 20;
+const SERIOUS_FROM = 50;
+const LOVED_FROM = 4;
+const scoreThatDay = { $ifNull: ['$inspectionAtVisit.severityScore', null] };
+const pickOne = (match, sort) => [
+  { $match: match },
+  { $sort: sort },
+  { $limit: 1 },
+  { $project: { _id: 0, name: '$restaurant.name', rating: 1, score: scoreThatDay } },
+];
+
+// "Your year in kitchens": one aggregation over the user's visits in that calendar year.
+export async function recapForUser(userId, year) {
+  const [facets] = await visits()
+    .aggregate([
+      {
+        $match: {
+          userId,
+          visitDate: {
+            $gte: new Date(Date.UTC(year, 0, 1)),
+            $lt: new Date(Date.UTC(year + 1, 0, 1)),
+          },
+        },
+      },
+      ...withKitchenThatDay,
+      {
+        $facet: {
+          totals: [
+            {
+              $group: {
+                _id: null,
+                meals: { $sum: 1 },
+                neighborhoods: { $addToSet: '$restaurant.neighborhood' },
+                clean: {
+                  $sum: {
+                    $cond: [{ $lt: [{ $ifNull: [scoreThatDay, CLEAN_BELOW] }, CLEAN_BELOW] }, 1, 0],
+                  },
+                },
+              },
+            },
+          ],
+          topNeighborhood: [
+            { $match: { 'restaurant.neighborhood': { $nin: [null, ''] } } },
+            { $group: { _id: '$restaurant.neighborhood', n: { $sum: 1 } } },
+            { $sort: { n: -1, _id: 1 } },
+            { $limit: 1 },
+          ],
+          safeFavorite: pickOne(
+            {
+              rating: { $gte: LOVED_FROM },
+              'inspectionAtVisit.severityScore': { $lt: CLEAN_BELOW },
+            },
+            { rating: -1, 'inspectionAtVisit.severityScore': 1, visitDate: -1 },
+          ),
+          guiltyPleasure: pickOne(
+            {
+              rating: { $gte: LOVED_FROM },
+              'inspectionAtVisit.severityScore': { $gte: SERIOUS_FROM },
+            },
+            { rating: -1, 'inspectionAtVisit.severityScore': -1, visitDate: -1 },
+          ),
+        },
+      },
+    ])
+    .toArray();
+
+  const totals = facets.totals[0];
+  if (!totals) return { year, meals: 0 };
+  return {
+    year,
+    meals: totals.meals,
+    neighborhoods: totals.neighborhoods.filter(Boolean).length,
+    cleanShare: Math.round((totals.clean / totals.meals) * 100),
+    topNeighborhood: facets.topNeighborhood[0]?._id ?? null,
+    safeFavorite: facets.safeFavorite[0] ?? null,
+    guiltyPleasure: facets.guiltyPleasure[0] ?? null,
+  };
+}
+
 export async function create(userId, fields) {
   const now = new Date();
   const { insertedId } = await visits().insertOne({

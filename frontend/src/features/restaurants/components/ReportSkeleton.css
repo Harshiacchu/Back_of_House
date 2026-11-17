@@ -1,0 +1,20 @@
+.report-skeleton {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.report-skeleton__hero,
+.report-skeleton__card {
+  display: grid;
+  gap: var(--space-3);
+  padding: clamp(24px, 5vw, 56px);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.report-skeleton__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}

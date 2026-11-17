@@ -1,0 +1,16 @@
+.share-button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1);
+}
+
+.share-button__status {
+  min-height: 1.2em;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.share-button__status--error {
+  color: var(--color-severity-high);
+}
