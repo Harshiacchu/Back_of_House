@@ -1,0 +1,37 @@
+.spot-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 16px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-alt);
+}
+
+.spot-item__hood {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.spot-item__name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+.spot-item__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.spot-item__note {
+  margin-top: auto;
+  padding-top: 4px;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}

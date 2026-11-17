@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { createPoll, deletePoll, listPolls, updatePoll } from '../../../api/polls.js';
 import EmptyState from '../../../components/EmptyState.jsx';
@@ -13,14 +14,20 @@ import './PollsPage.css';
 
 export default function PollsPage() {
   useDocumentTitle('Group Picks');
+  const navigate = useNavigate();
   const { data, error, loading, reload } = useFetch(listPolls);
   // null = closed, 'new' = creating, otherwise the poll being edited
   const [editing, setEditing] = useState(null);
   const [actionError, setActionError] = useState(null);
 
   async function handleSubmit(body) {
-    if (editing === 'new') await createPoll(body);
-    else await updatePoll(editing._id, body);
+    if (editing === 'new') {
+      // Straight to the new poll, where the share link is.
+      const { poll } = await createPoll(body);
+      navigate(`/polls/${poll._id}`);
+      return;
+    }
+    await updatePoll(editing._id, body);
     setEditing(null);
     reload();
   }
