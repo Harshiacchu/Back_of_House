@@ -17,7 +17,7 @@
 }
 
 .visit-item__rating {
-  color: #bf8b2e;
+  color: var(--color-rating);
   letter-spacing: 1px;
 }
 

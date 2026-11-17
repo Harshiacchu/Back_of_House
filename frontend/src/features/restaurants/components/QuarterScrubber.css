@@ -1,0 +1,77 @@
+.quarter-scrubber {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.quarter-scrubber__play {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
+  font-size: 0.8rem;
+}
+
+.quarter-scrubber__play:hover {
+  background: var(--color-accent-hover);
+}
+
+.quarter-scrubber__track {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.quarter-scrubber__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: var(--tap);
+}
+
+.quarter-scrubber__bar {
+  flex: 1;
+  height: var(--bar);
+  min-height: 3px;
+  border-radius: 3px;
+  background: var(--color-border);
+  transition: background-color 0.2s;
+}
+
+.quarter-scrubber__bar--on {
+  background: var(--color-text);
+}
+
+.quarter-scrubber__range {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: var(--tap);
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.quarter-scrubber__range:focus-visible + .quarter-scrubber__ends {
+  color: var(--color-accent);
+}
+
+.quarter-scrubber__track:has(.quarter-scrubber__range:focus-visible) .quarter-scrubber__bars {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.quarter-scrubber__ends {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}

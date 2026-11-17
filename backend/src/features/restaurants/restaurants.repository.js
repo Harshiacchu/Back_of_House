@@ -1,13 +1,18 @@
+import { ObjectId } from 'mongodb';
+
+import { SORTS, afterCursor, encodeCursor, nameFilter } from './search.js';
 import { getDb } from '../../db/connection.js';
 import { COLLECTIONS } from '../../db/collections.js';
-import { escapeRegex } from '../../lib/validation.js';
 
 export const restaurantsIndexes = {
   [COLLECTIONS.restaurants]: [
     { key: { licenseNo: 1 }, unique: true },
+    { key: { searchTokens: 1 } },
     { key: { neighborhood: 1, 'summary.trajectory': 1 } },
-    { key: { 'summary.lastInspectionDate': -1 } },
-    { key: { name: 1 } },
+    // One per sort order, with _id as the tie-breaker the cursor relies on.
+    { key: { 'summary.lastInspectionDate': -1, _id: -1 } },
+    { key: { 'summary.severityScore': 1, _id: 1 } },
+    { key: { name: 1, _id: 1 } },
   ],
   [COLLECTIONS.inspections]: [{ key: { restaurantId: 1, date: -1 } }],
 };
@@ -25,27 +30,58 @@ export function findSummariesByIds(objectIds) {
     .toArray();
 }
 
-export async function search({ q, neighborhood, trajectory, page, limit }) {
-  const filter = {};
-  if (q) filter.name = { $regex: escapeRegex(q), $options: 'i' };
+function buildFilter({ q, neighborhood, trajectory }) {
+  const filter = nameFilter(q);
   if (neighborhood) filter.neighborhood = neighborhood;
   if (trajectory) filter['summary.trajectory'] = trajectory;
-  const sort = q ? { name: 1 } : { 'summary.lastInspectionDate': -1, _id: 1 };
-
-  const [items, total] = await Promise.all([
-    restaurants()
-      .find(filter, { projection: SUMMARY_PROJECTION })
-      .sort(sort)
-      .skip((page - 1) * limit)
-      .limit(limit)
-      .toArray(),
-    restaurants().countDocuments(filter),
-  ]);
-  return { items, page, total, totalPages: Math.max(1, Math.ceil(total / limit)) };
+  return filter;
 }
 
+// One page of results. `total` is only counted for the first page (no cursor); the client keeps
+// it while paging, which saves a count query on every Next.
+export async function search({ q, neighborhood, trajectory, sort: sortKey, cursor, limit }) {
+  const sort = SORTS[sortKey];
+  const base = buildFilter({ q, neighborhood, trajectory });
+  const filter = cursor
+    ? { $and: [base, afterCursor(cursor, sort, (id) => new ObjectId(id))] }
+    : base;
+
+  const [rows, total] = await Promise.all([
+    restaurants()
+      .find(filter, { projection: SUMMARY_PROJECTION })
+      .sort({ [sort.field]: sort.dir, _id: sort.dir })
+      .limit(limit + 1)
+      .toArray(),
+    cursor ? null : restaurants().countDocuments(base),
+  ]);
+
+  const items = rows.slice(0, limit);
+  const nextCursor = rows.length > limit ? encodeCursor(items.at(-1), sort) : null;
+  return { items, total, nextCursor };
+}
+
+// Autocomplete: a handful of names for what has been typed so far.
+export function suggest(q, limit) {
+  const filter = nameFilter(q);
+  if (!filter.searchTokens) return Promise.resolve([]);
+  return restaurants()
+    .find(filter, { projection: { name: 1, neighborhood: 1, 'summary.severityScore': 1 } })
+    .sort({ name: 1, _id: 1 })
+    .limit(limit)
+    .toArray();
+}
+
+// Neighborhoods only change when the seed runs, so the list is read once per server process.
+let neighborhoodsOnce;
 export function listNeighborhoods() {
-  return restaurants().distinct('neighborhood');
+  neighborhoodsOnce ??= restaurants()
+    .distinct('neighborhood')
+    .then((names) => names.filter(Boolean).sort())
+    .catch((err) => {
+      neighborhoodsOnce = undefined;
+      throw err;
+    });
+  return neighborhoodsOnce;
 }
 
 export async function findReport(id) {

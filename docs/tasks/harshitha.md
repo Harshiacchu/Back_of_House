@@ -5,25 +5,29 @@ Estimate: **~31 h** (Ayush: ~30 h). Tick tasks here as you finish them.
 
 ## Tasks
 
-| ID   | Task                                                                                  | Est. | Status                                  |
-| ---- | ------------------------------------------------------------------------------------- | ---- | --------------------------------------- |
-| H-0  | Repo scaffold, ESLint/Prettier, CI, CODEOWNERS                                        | 3 h  | ✅ Done                                 |
-| H-1  | Auth: Passport local, sessions in MongoDB, register/login/logout/me, `ProtectedRoute` | 3 h  | ✅ Done                                 |
-| H-2  | Intro page + design system + shared components                                        | 4 h  | ✅ Done                                 |
-| H-2b | Email sign-up with 6-digit verification + Continue with Google (no new libraries)     | 3 h  | ✅ Done                                 |
-| H-3  | Seed script: Analyze Boston API → `restaurants` + `inspections` (2–3k restaurants)    | 4 h  | ✅ Done                                 |
-| H-4  | Violation decoding table + severity score + trajectory                                | 4 h  | ✅ Done                                 |
-| H-5  | `GET /api/restaurants` (search, neighborhood, trajectory, paging) + `/neighborhoods`  | 3 h  | ✅ Done                                 |
-| H-6  | `GET /api/restaurants/:id` kitchen report; wire + polish Kitchen Reports UI           | 3 h  | ✅ Done                                 |
-| H-7  | Visits CRUD API, with `inspectionAtVisit` = latest inspection on/before the visit     | 3 h  | ✅ Done                                 |
-| H-8  | Visit Log UI wiring + manual test of create/edit/delete                               | 1 h  | API tested; click-through in browser ⬜ |
+| ID   | Task                                                                                                         | Est. | Status                                  |
+| ---- | ------------------------------------------------------------------------------------------------------------ | ---- | --------------------------------------- |
+| H-0  | Repo scaffold, ESLint/Prettier, CI, CODEOWNERS                                                               | 3 h  | ✅ Done                                 |
+| H-1  | Auth: Passport local, sessions in MongoDB, register/login/logout/me, `ProtectedRoute`                        | 3 h  | ✅ Done                                 |
+| H-2  | Intro page + design system + shared components                                                               | 4 h  | ✅ Done                                 |
+| H-2b | Email sign-up with 6-digit verification + Continue with Google (no new libraries)                            | 3 h  | ✅ Done                                 |
+| H-3  | Seed script: Analyze Boston API → `restaurants` + `inspections` (2–3k restaurants)                           | 4 h  | ✅ Done                                 |
+| H-4  | Violation decoding table + severity score + trajectory                                                       | 4 h  | ✅ Done                                 |
+| H-5  | `GET /api/restaurants` (search, neighborhood, trajectory, paging) + `/neighborhoods`                         | 3 h  | ✅ Done                                 |
+| H-6  | `GET /api/restaurants/:id` kitchen report; wire + polish Kitchen Reports UI                                  | 3 h  | ✅ Done                                 |
+| H-7  | Visits CRUD API, with `inspectionAtVisit` = latest inspection on/before the visit                            | 3 h  | ✅ Done                                 |
+| H-8  | Visit Log UI wiring + manual test of create/edit/delete                                                      | 1 h  | API tested; click-through in browser ⬜ |
+| H-9  | Kitchen Reports v2: autocomplete, cursor pagination, sort, 5/10/25/50 per page, cards                        | 3 h  | Built; seeded and browser-checked ✅    |
+| H-10 | Share cards (kitchen report + year recap), skeleton loading on my pages                                      | 2 h  | Built; needs browser test ⬜            |
+| H-11 | Kitchen Weather: canvas dot map of concerns by quarter, scrubber + play, hover details, neighborhood picking | 3 h  | Built and browser-checked ✅            |
 
 Seeded: 3,334 restaurants and 34,495 inspections (Boston, active restaurants, since 2023).
 Re-run with `npm run seed`, or `npm run seed -- --refresh` to download fresh data.
 
 ## Shared final tasks (my half)
 
-- [ ] F-H1 Deploy to Render (env vars, Atlas network access, production seed)
+- [x] F-H1 Deploy to Render (env vars, Atlas network access, production seed). Live at
+      https://back-of-house.onrender.com/
 - [ ] F-H2 Google Form submission (thumbnail + links)
 - [ ] F-H3 Record my part of the narrated video (Kitchen Reports + Visit Log), following Ayush's script
 - [ ] F-H4 Remove unused code/stubs in my areas; `npm run check` clean
@@ -42,4 +46,5 @@ _(Write here when you need something changed in Ayush's files. He makes the chan
 
 ## Notes
 
--
+- Done for Ayush: `AuthProvider` no longer clears the user or ends loading when its first
+  `getMe` is aborted (StrictMode in dev), so shared `/polls/:id` links open directly.

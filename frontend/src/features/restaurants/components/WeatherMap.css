@@ -1,0 +1,58 @@
+.weather-map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 6;
+  max-height: 620px;
+}
+
+.weather-map__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.weather-map__place {
+  position: absolute;
+  padding: 2px 4px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--color-text);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  text-shadow:
+    0 0 3px var(--color-surface),
+    0 0 6px var(--color-surface);
+}
+
+.weather-map__place:hover {
+  color: var(--color-accent);
+}
+
+.weather-map__place[aria-pressed='true'] {
+  background: var(--color-text);
+  color: var(--color-text-inverse);
+  text-shadow: none;
+}
+
+.weather-map__tip {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  gap: 2px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-dark);
+  color: var(--color-text-inverse);
+  font-size: 0.78rem;
+  white-space: nowrap;
+  transform: translate(-50%, calc(-100% - 14px));
+  pointer-events: none;
+}
+
+.weather-map__tip span {
+  color: var(--color-text-tertiary);
+}

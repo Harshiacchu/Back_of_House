@@ -31,6 +31,9 @@
   --color-severity-high: #c4001a;
   --color-severity-high-tint: #ffeaed;
 
+  /* Star ratings */
+  --color-rating: #bf8b2e;
+
   /* Trajectory */
   --color-trend-improving: #1f7a37;
   --color-trend-steady: #6e6e73;

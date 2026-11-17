@@ -1,6 +1,7 @@
 // Turns raw dataset rows (one row per violation line) into restaurants and inspections.
 import { neighborhoodOf, titleCase } from '../../src/features/restaurants/neighborhoods.js';
 import { headlineScore, scoreInspection } from '../../src/features/restaurants/scoring/severity.js';
+import { toSearchTokens } from '../../src/features/restaurants/search.js';
 import { computeTrajectory } from '../../src/features/restaurants/scoring/trajectory.js';
 import { decodeViolation, levelOf } from '../../src/features/restaurants/scoring/violationCodes.js';
 
@@ -23,6 +24,8 @@ const RESULTS = Object.freeze({
 });
 
 const MAX_COMMENT = 280;
+// Scores of the latest inspections (oldest first), for the history strip on result cards.
+const RECENT_SCORES = 8;
 
 // "ALEX PIZZA" -> "Alex Pizza"; names that already use mixed case are left alone.
 function displayName(raw) {
@@ -94,11 +97,13 @@ export function buildRecords(rows) {
       }));
     const newestFirst = [...ordered].reverse();
     const last = newestFirst[0];
+    const name = displayName(latest.businessname);
 
     restaurants.push({
       restaurant: {
         licenseNo,
-        name: displayName(latest.businessname),
+        name,
+        searchTokens: toSearchTokens(name),
         address: titleCase((latest.address ?? '').replace(/\s+/g, ' ').trim()),
         zip: (latest.zip ?? '').trim().slice(0, 5).padStart(5, '0'),
         neighborhood: neighborhoodOf(latest.city, latest.zip),
@@ -110,6 +115,7 @@ export function buildRecords(rows) {
           lastInspectionDate: last.date,
           lastResult: last.result,
           inspectionCount: ordered.length,
+          recentScores: ordered.slice(-RECENT_SCORES).map((i) => i.severityScore),
         },
       },
       inspections: newestFirst,

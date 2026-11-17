@@ -1,0 +1,36 @@
+.inspection-strip {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
+.inspection-strip__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 36px;
+}
+
+.inspection-strip__bar {
+  flex: 1;
+  max-width: 22px;
+  height: var(--bar);
+  border-radius: 4px;
+}
+
+.inspection-strip__bar--low {
+  background: var(--color-severity-low);
+}
+
+.inspection-strip__bar--medium {
+  background: var(--color-severity-medium);
+}
+
+.inspection-strip__bar--high {
+  background: var(--color-severity-high);
+}
+
+.inspection-strip__caption {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}

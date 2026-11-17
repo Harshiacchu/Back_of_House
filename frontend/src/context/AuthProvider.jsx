@@ -9,12 +9,18 @@ export default function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // An aborted check (StrictMode remount in dev) must not sign the user out or end loading,
+    // or a direct link to a private page bounces to /login before the real check lands.
     const controller = new AbortController();
     authApi
       .getMe(controller.signal)
       .then((data) => setUser(data.user))
-      .catch(() => setUser(null))
-      .finally(() => setLoading(false));
+      .catch(() => {
+        if (!controller.signal.aborted) setUser(null);
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false);
+      });
     return () => controller.abort();
   }, []);
 
