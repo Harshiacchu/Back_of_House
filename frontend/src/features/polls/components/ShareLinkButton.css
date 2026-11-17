@@ -1,0 +1,12 @@
+.share-link {
+  display: grid;
+  justify-items: start;
+  gap: 6px;
+}
+
+.share-link__hint {
+  max-width: 22em;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  overflow-wrap: anywhere;
+}
