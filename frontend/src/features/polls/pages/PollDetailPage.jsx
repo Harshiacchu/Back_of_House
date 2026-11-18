@@ -73,3 +73,6 @@ export default function PollDetailPage() {
     </section>
   );
 }
+
+// Takes no props.
+PollDetailPage.propTypes = {};

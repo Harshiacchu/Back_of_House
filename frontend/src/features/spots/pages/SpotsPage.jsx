@@ -84,3 +84,6 @@ export default function SpotsPage() {
     </section>
   );
 }
+
+// Takes no props.
+SpotsPage.propTypes = {};
