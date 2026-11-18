@@ -8,9 +8,14 @@
   min-height: min(88vh, 820px);
   padding: 22px 22px clamp(3.5rem, 8vw, 5.5rem);
   background:
-    linear-gradient(180deg, rgb(0 0 0 / 15%) 0%, rgb(0 0 0 / 55%) 55%, #000000 100%),
+    linear-gradient(
+      180deg,
+      var(--color-scrim-soft) 0%,
+      var(--color-scrim) 55%,
+      var(--color-bg-dark) 100%
+    ),
     var(--hero-photo) center 30% / cover no-repeat;
-  color: #ffffff;
+  color: var(--color-on-dark);
 }
 
 .intro__hero-text {
@@ -24,7 +29,7 @@
 .intro__eyebrow {
   font-size: 1.05rem;
   font-weight: 600;
-  color: #ffb340;
+  color: var(--color-highlight);
 }
 
 .intro__title {
@@ -39,7 +44,7 @@
   max-width: 30em;
   font-size: clamp(1.15rem, 2.2vw, 1.45rem);
   line-height: 1.35;
-  color: rgb(255 255 255 / 80%);
+  color: var(--color-on-dark-secondary);
 }
 
 .intro__ctas {
@@ -53,15 +58,15 @@
 .intro__cta {
   min-height: 52px;
   padding: 0 1.8rem;
-  background: #ffffff;
+  background: var(--color-on-dark);
   color: var(--color-text);
   font-size: 1.05rem;
 }
 
 .intro__cta:hover {
-  background: rgb(255 255 255 / 88%);
+  background: var(--color-glass);
 }
 
 .intro__more {
-  color: #ffffff;
+  color: var(--color-on-dark);
 }

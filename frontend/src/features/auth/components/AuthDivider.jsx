@@ -7,3 +7,6 @@ export default function AuthDivider() {
     </p>
   );
 }
+
+// Takes no props.
+AuthDivider.propTypes = {};

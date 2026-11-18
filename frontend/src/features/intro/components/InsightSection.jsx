@@ -28,3 +28,6 @@ export default function InsightSection() {
     </section>
   );
 }
+
+// Takes no props.
+InsightSection.propTypes = {};

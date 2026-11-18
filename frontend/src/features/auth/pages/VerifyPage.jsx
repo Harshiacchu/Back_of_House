@@ -118,3 +118,6 @@ export default function VerifyPage() {
     </AuthShell>
   );
 }
+
+// Takes no props.
+VerifyPage.propTypes = {};

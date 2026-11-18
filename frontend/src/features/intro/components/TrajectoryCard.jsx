@@ -73,3 +73,6 @@ export default function TrajectoryCard() {
     </article>
   );
 }
+
+// Takes no props.
+TrajectoryCard.propTypes = {};

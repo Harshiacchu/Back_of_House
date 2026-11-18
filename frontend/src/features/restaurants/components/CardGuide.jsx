@@ -76,3 +76,6 @@ export default function CardGuide() {
     </details>
   );
 }
+
+// Takes no props.
+CardGuide.propTypes = {};

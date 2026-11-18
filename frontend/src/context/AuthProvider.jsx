@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { AuthContext } from './AuthContext.js';
 import * as authApi from '../api/auth.js';
+import { onSessionEnded } from '../api/client.js';
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -22,6 +23,11 @@ export default function AuthProvider({ children }) {
         if (!controller.signal.aborted) setLoading(false);
       });
     return () => controller.abort();
+  }, []);
+
+  useEffect(() => {
+    onSessionEnded(() => setUser(null));
+    return () => onSessionEnded(() => {});
   }, []);
 
   const login = useCallback(async (credentials) => {

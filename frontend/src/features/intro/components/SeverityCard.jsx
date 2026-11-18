@@ -62,3 +62,6 @@ export default function SeverityCard() {
     </article>
   );
 }
+
+// Takes no props.
+SeverityCard.propTypes = {};
