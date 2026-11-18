@@ -9,8 +9,9 @@ polls with a side-by-side kitchen comparison.
 
 - **Authors:** Harshitha Seetharaman, Ayush Nimeshkumar Patel
 - **Class:** [CS5610 Web Development, Northeastern University](https://johnguerra.co/classes/webDevelopment_fall_2026/index.html)
-- **Live demo:** _coming soon_
-- **Video demo:** _coming soon_
+- **Live demo:** https://back-of-house.onrender.com/
+- **Video demo:** https://youtu.be/nxsLy9KKVM4
+- **Presentation:** https://docs.google.com/presentation/d/1iMGqt6Wa3bbmrpkO99h1jIDTV9JVM1bI1avUeHUzhRQ/edit?usp=sharing
 - **Design document:** [docs/DESIGN.md](docs/DESIGN.md)
 
 ## Project objective
@@ -25,7 +26,7 @@ help groups agree on a place everyone trusts.
 
 ## Screenshot
 
-_Coming soon._
+![Back of House home page](docs/mockups/home.png)
 
 ## Tech stack
 

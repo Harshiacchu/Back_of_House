@@ -51,6 +51,11 @@ _(Write here when you need something changed in Ayush's files. He makes the chan
   - **F-A6 Video script (~1.5 h):** a narrated demo of about 3–5 minutes, split into who-says-what. Open with the problem, then Kitchen Reports (Harshitha), Visit Log (Harshitha), Group Picks (you), My Spots (you), and close. Both of us must appear on camera (rubric). Share it with me at least 2 days before the freeze so I can rehearse my part.
   - **F-A2 Video edit:** already yours. Cut from both recordings, add captions if possible, upload as a **public** link.
   - **F-A7 Presentation slides (~2 h):** for class. Problem, personas, the two features, a live-demo slot, tech stack (no Mongoose, axios or CORS; Passport auth), and what we'd build next. Match the site's look (system font, white/black, one blue).
+- **README: final links (form is submitted).** Near the top of `README.md`:
+  - Replace `- **Video demo:** _coming soon_` with
+    `- **Video demo:** [YouTube](https://youtu.be/nxsLy9KKVM4)`
+  - Add below it
+    `- **Slides:** [Google Slides](https://docs.google.com/presentation/d/1iMGqt6Wa3bbmrpkO99h1jIDTV9JVM1bI1avUeHUzhRQ/edit?usp=sharing)`
 
 ## Notes
 
