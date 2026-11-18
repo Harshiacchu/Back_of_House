@@ -90,3 +90,6 @@ export default function RestaurantDetailPage() {
     </article>
   );
 }
+
+// Takes no props.
+RestaurantDetailPage.propTypes = {};

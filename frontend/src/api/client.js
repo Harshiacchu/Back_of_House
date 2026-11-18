@@ -8,6 +8,13 @@ export class ApiError extends Error {
   }
 }
 
+// Set by AuthProvider: called when a private request comes back 401 because the session ended,
+// so the app signs the user out and ProtectedRoute sends them to /login.
+let handleSessionEnded = () => {};
+export function onSessionEnded(handler) {
+  handleSessionEnded = handler;
+}
+
 export async function request(path, { method = 'GET', body, signal } = {}) {
   const response = await fetch(`/api${path}`, {
     method,
@@ -20,6 +27,8 @@ export async function request(path, { method = 'GET', body, signal } = {}) {
   if (response.status === 204) return null;
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
+    // Auth routes answer 401 for a wrong password; that is not a lost session.
+    if (response.status === 401 && !path.startsWith('/auth/')) handleSessionEnded();
     const fallback =
       response.status >= 500
         ? 'The kitchen server isn’t responding right now. Try again in a moment.'

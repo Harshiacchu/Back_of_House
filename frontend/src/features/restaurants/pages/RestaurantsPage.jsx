@@ -164,3 +164,6 @@ export default function RestaurantsPage() {
     </section>
   );
 }
+
+// Takes no props.
+RestaurantsPage.propTypes = {};

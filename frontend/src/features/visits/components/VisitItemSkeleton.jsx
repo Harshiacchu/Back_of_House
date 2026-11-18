@@ -20,3 +20,6 @@ export default function VisitItemSkeleton() {
     </div>
   );
 }
+
+// Takes no props.
+VisitItemSkeleton.propTypes = {};

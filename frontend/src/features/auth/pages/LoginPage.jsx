@@ -75,3 +75,6 @@ export default function LoginPage() {
     </AuthShell>
   );
 }
+
+// Takes no props.
+LoginPage.propTypes = {};

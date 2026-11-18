@@ -30,7 +30,7 @@
 }
 
 .rating-input__star.is-on {
-  color: #bf8b2e;
+  color: var(--color-rating);
 }
 
 .rating-input__star:has(input:focus-visible) {

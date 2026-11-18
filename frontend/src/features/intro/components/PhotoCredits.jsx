@@ -16,3 +16,6 @@ export default function PhotoCredits() {
     </details>
   );
 }
+
+// Takes no props.
+PhotoCredits.propTypes = {};

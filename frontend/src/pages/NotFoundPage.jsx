@@ -16,3 +16,6 @@ export default function NotFoundPage() {
     </section>
   );
 }
+
+// Takes no props.
+NotFoundPage.propTypes = {};
