@@ -6,3 +6,36 @@
   padding: 0;
   list-style: none;
 }
+
+.visit-log__overview {
+  display: grid;
+  gap: 20px;
+  margin-bottom: var(--space-5);
+}
+
+.visit-log__month + .visit-log__month {
+  margin-top: var(--space-5);
+}
+
+.visit-log__month-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text-secondary);
+}
+
+/* A hairline runs from the month name to the edge, like a page in a diary */
+.visit-log__month-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-hairline);
+}
+
+.visit-log__none {
+  color: var(--color-text-secondary);
+}

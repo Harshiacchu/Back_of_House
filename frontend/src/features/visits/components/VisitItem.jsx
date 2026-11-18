@@ -8,12 +8,12 @@ import { visitShape } from '../../../utils/propShapes.js';
 import './VisitItem.css';
 
 // One visit: the meal, and what the kitchen looked like that day.
-export default function VisitItem({ visit, onEdit, onDelete }) {
+export default function VisitItem({ visit, highlighted = false, onEdit, onDelete }) {
   const [confirming, setConfirming] = useState(false);
   const inspection = visit.inspectionAtVisit;
 
   return (
-    <article className="visit-item">
+    <article className={highlighted ? 'visit-item visit-item--highlighted' : 'visit-item'}>
       <header className="visit-item__header">
         <span className="visit-item__date">{formatDate(visit.visitDate)}</span>
         {visit.rating != null && (
@@ -78,6 +78,7 @@ export default function VisitItem({ visit, onEdit, onDelete }) {
 
 VisitItem.propTypes = {
   visit: visitShape.isRequired,
+  highlighted: PropTypes.bool,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };

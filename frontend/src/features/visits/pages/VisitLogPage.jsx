@@ -15,12 +15,32 @@ import ShareButton from '../../../components/ShareButton.jsx';
 import { useDocumentTitle } from '../../../hooks/useDocumentTitle.js';
 import { useFetch } from '../../../hooks/useFetch.js';
 import { drawRecapCard } from '../../../utils/shareCards.js';
+import QuadrantFilter from '../components/QuadrantFilter.jsx';
+import TasteMap from '../components/TasteMap.jsx';
 import VisitForm from '../components/VisitForm.jsx';
 import VisitItem from '../components/VisitItem.jsx';
 import VisitItemSkeleton from '../components/VisitItemSkeleton.jsx';
+import VisitStats from '../components/VisitStats.jsx';
+import { QUADRANTS, quadrantOf } from '../tasteQuadrants.js';
 import './VisitLogPage.css';
 
 const SKELETONS = 3;
+const monthFormat = new Intl.DateTimeFormat('en-US', {
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+
+// Visits arrive newest first; keep that order and start a new group at each month.
+function groupByMonth(visits) {
+  const groups = [];
+  for (const visit of visits) {
+    const label = monthFormat.format(new Date(visit.visitDate));
+    if (groups.at(-1)?.label !== label) groups.push({ label, visits: [] });
+    groups.at(-1).visits.push(visit);
+  }
+  return groups;
+}
 
 // The recap is fetched only when someone asks to share it.
 async function makeRecapImage() {
@@ -45,6 +65,8 @@ export default function VisitLogPage() {
   // null = closed, 'new' = creating, otherwise the visit being edited
   const [editing, setEditing] = useState(fromReport ? 'new' : null);
   const [actionError, setActionError] = useState(null);
+  const [quadrant, setQuadrant] = useState('all');
+  const [selectedId, setSelectedId] = useState(null);
 
   function closeForm() {
     setEditing(null);
@@ -68,7 +90,26 @@ export default function VisitLogPage() {
     }
   }
 
+  // Picking a dot shows its quadrant and brings its card into view.
+  function handleSelect(visit) {
+    setSelectedId(visit._id);
+    setQuadrant(quadrantOf(visit));
+    requestAnimationFrame(() =>
+      document
+        .getElementById(`visit-${visit._id}`)
+        ?.scrollIntoView({ behavior: 'smooth', block: 'center' }),
+    );
+  }
+
   const visits = data?.items ?? [];
+  const shown = quadrant === 'all' ? visits : visits.filter((v) => quadrantOf(v) === quadrant);
+  const filterOptions = [
+    { key: 'all', label: 'All visits', count: visits.length },
+    ...QUADRANTS.map((q) => ({
+      ...q,
+      count: visits.filter((v) => quadrantOf(v) === q.key).length,
+    })),
+  ];
 
   return (
     <section>
@@ -120,18 +161,44 @@ export default function VisitLogPage() {
         </EmptyState>
       )}
       {visits.length > 0 && (
-        <ul className="visit-log__list">
-          {visits.map((visit) => (
-            <li key={visit._id}>
-              <VisitItem
-                visit={visit}
-                onEdit={() => setEditing(visit)}
-                onDelete={() => handleDelete(visit._id)}
-              />
-            </li>
-          ))}
-        </ul>
+        <div className="visit-log__overview">
+          <VisitStats visits={visits} />
+          <TasteMap
+            visits={visits}
+            quadrant={quadrant}
+            selectedId={selectedId}
+            onSelect={handleSelect}
+          />
+          <QuadrantFilter
+            options={filterOptions}
+            value={quadrant}
+            onChange={(key) => {
+              setQuadrant(key);
+              setSelectedId(null);
+            }}
+          />
+        </div>
       )}
+      {visits.length > 0 && shown.length === 0 && (
+        <p className="visit-log__none">No visits in this corner yet.</p>
+      )}
+      {groupByMonth(shown).map((group) => (
+        <section key={group.label} className="visit-log__month" aria-label={group.label}>
+          <h2 className="visit-log__month-title">{group.label}</h2>
+          <ul className="visit-log__list">
+            {group.visits.map((visit) => (
+              <li key={visit._id} id={`visit-${visit._id}`}>
+                <VisitItem
+                  visit={visit}
+                  highlighted={visit._id === selectedId}
+                  onEdit={() => setEditing(visit)}
+                  onDelete={() => handleDelete(visit._id)}
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
     </section>
   );
 }

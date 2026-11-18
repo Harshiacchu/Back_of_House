@@ -1,0 +1,223 @@
+.taste-map {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background: var(--color-map-bg);
+  color: var(--color-on-dark);
+}
+
+.taste-map__caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: 0.9rem;
+  color: var(--color-map-text);
+}
+
+.taste-map__eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-on-dark);
+}
+
+.taste-map__plot {
+  position: relative;
+  aspect-ratio: 16 / 8;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* The two quadrant lines through the centre */
+.taste-map__axis {
+  position: absolute;
+  background: var(--color-map-line);
+}
+
+.taste-map__axis--x {
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+}
+
+.taste-map__axis--y {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+}
+
+/* Quadrant names sit in each corner; the active filter lights its quarter up */
+.taste-map__zone {
+  position: absolute;
+  display: flex;
+  width: 50%;
+  height: 50%;
+  padding: 14px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-map-text);
+  transition: background-color 0.25s;
+}
+
+.taste-map__zone--keepers {
+  top: 0;
+  right: 0;
+  justify-content: flex-end;
+}
+
+.taste-map__zone--second-look {
+  right: 0;
+  bottom: 0;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.taste-map__zone--forgettable {
+  top: 0;
+  left: 0;
+}
+
+.taste-map__zone--skip {
+  bottom: 0;
+  left: 0;
+  align-items: flex-end;
+}
+
+.taste-map__zone--active {
+  background: var(--color-map-zone);
+  color: var(--color-on-dark);
+}
+
+.taste-map__tick {
+  position: absolute;
+  font-size: 0.72rem;
+  color: var(--color-map-text);
+  white-space: nowrap;
+}
+
+.taste-map__tick--left,
+.taste-map__tick--right {
+  top: 50%;
+  transform: translateY(6px);
+}
+
+.taste-map__tick--left {
+  left: 16px;
+}
+
+.taste-map__tick--right {
+  right: 16px;
+}
+
+.taste-map__tick--top,
+.taste-map__tick--bottom {
+  left: 50%;
+  transform: translateX(8px);
+}
+
+.taste-map__tick--top {
+  top: 14px;
+}
+
+.taste-map__tick--bottom {
+  bottom: 14px;
+}
+
+/* A meal. Colour still means severity, as everywhere else in the app. */
+.taste-map__dot {
+  position: absolute;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 2px solid var(--color-map-bg-deep);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    opacity 0.2s,
+    box-shadow 0.2s;
+}
+
+.taste-map__dot--low {
+  background: var(--color-severity-low-tint);
+  box-shadow: 0 0 0 3px var(--color-severity-low);
+}
+
+.taste-map__dot--medium {
+  background: var(--color-severity-medium-tint);
+  box-shadow: 0 0 0 3px var(--color-severity-medium);
+}
+
+.taste-map__dot--high {
+  background: var(--color-severity-high-tint);
+  box-shadow: 0 0 0 3px var(--color-severity-high);
+}
+
+.taste-map__dot:hover,
+.taste-map__dot:focus-visible,
+.taste-map__dot--selected {
+  z-index: 2;
+  transform: translate(-50%, -50%) scale(1.35);
+}
+
+.taste-map__dot--selected {
+  outline: 2px solid var(--color-on-dark);
+  outline-offset: 5px;
+}
+
+.taste-map__dot--dimmed {
+  opacity: 0.25;
+}
+
+.taste-map__label {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  padding: 4px 10px;
+  border-radius: 980px;
+  background: var(--color-glass);
+  color: var(--color-text);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-50%) scale(0.74);
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+.taste-map__dot:hover .taste-map__label,
+.taste-map__dot:focus-visible .taste-map__label,
+.taste-map__dot--selected .taste-map__label {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .taste-map {
+    padding: 20px;
+  }
+
+  .taste-map__plot {
+    aspect-ratio: 1;
+  }
+
+  /* Too tight for axis captions on a phone; the corner names carry the meaning. */
+  .taste-map__tick {
+    display: none;
+  }
+
+  .taste-map__zone {
+    padding: 10px;
+    font-size: 0.7rem;
+  }
+}

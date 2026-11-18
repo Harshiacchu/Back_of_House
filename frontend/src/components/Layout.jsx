@@ -1,4 +1,5 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Outlet, useLocation, useNavigationType } from 'react-router-dom';
 
 import NavBar from './NavBar.jsx';
 import './Layout.css';
@@ -8,7 +9,13 @@ const FULL_BLEED = new Set(['/', '/login', '/register', '/verify']);
 
 export default function Layout() {
   const { pathname } = useLocation();
+  const navigationType = useNavigationType();
   const fullBleed = FULL_BLEED.has(pathname);
+
+  // Opening a new page starts at the top; Back/Forward (POP) keeps the browser's own scroll spot.
+  useEffect(() => {
+    if (navigationType !== 'POP') window.scrollTo(0, 0);
+  }, [pathname, navigationType]);
 
   return (
     <div className={fullBleed ? 'layout' : 'layout layout--app'}>
