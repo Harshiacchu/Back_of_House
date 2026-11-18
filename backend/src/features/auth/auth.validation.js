@@ -36,10 +36,3 @@ export function parseEmailOnly(body) {
   v.done();
   return { email };
 }
-
-// Only allow same-site relative paths as post-login destinations.
-export function safeNext(value) {
-  return typeof value === 'string' && value.startsWith('/') && !value.startsWith('//')
-    ? value
-    : '/restaurants';
-}

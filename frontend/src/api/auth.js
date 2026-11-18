@@ -1,7 +1,7 @@
 import { request } from './client.js';
 
 export const getMe = (signal) => request('/auth/me', { signal });
-// -> { google: boolean, emailDelivery: 'email' | 'console' }
+// -> { emailDelivery: 'email' | 'console' }
 export const getProviders = (signal) => request('/auth/providers', { signal });
 // -> 202 { email, verificationRequired: true }
 export const register = (details) => request('/auth/register', { method: 'POST', body: details });
@@ -11,5 +11,3 @@ export const resendCode = (email) => request('/auth/resend', { method: 'POST', b
 // 403 with data.verificationRequired when the email isn't verified yet
 export const login = (credentials) => request('/auth/login', { method: 'POST', body: credentials });
 export const logout = () => request('/auth/logout', { method: 'POST' });
-export const googleSignInUrl = (next = '/restaurants') =>
-  `/api/auth/google?next=${encodeURIComponent(next)}`;

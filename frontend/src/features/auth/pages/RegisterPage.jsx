@@ -2,12 +2,9 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../../hooks/useAuth.js';
-import { useAuthProviders } from '../../../hooks/useAuthProviders.js';
 import { useDocumentTitle } from '../../../hooks/useDocumentTitle.js';
-import AuthDivider from '../components/AuthDivider.jsx';
 import AuthShell from '../components/AuthShell.jsx';
 import FormAlert from '../components/FormAlert.jsx';
-import GoogleButton from '../components/GoogleButton.jsx';
 import PasswordField from '../components/PasswordField.jsx';
 import SubmitButton from '../components/SubmitButton.jsx';
 import TextField from '../components/TextField.jsx';
@@ -16,7 +13,6 @@ import './RegisterPage.css';
 export default function RegisterPage() {
   useDocumentTitle('Create account');
   const { register } = useAuth();
-  const { showGoogle } = useAuthProviders();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [fieldErrors, setFieldErrors] = useState({});
@@ -53,12 +49,6 @@ export default function RegisterPage() {
       }
     >
       {error && <FormAlert>{error}</FormAlert>}
-      {showGoogle && (
-        <>
-          <GoogleButton label="Sign up with Google" />
-          <AuthDivider />
-        </>
-      )}
       <form className="register-page__form" onSubmit={handleSubmit} noValidate>
         <TextField
           label="Name"

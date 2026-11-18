@@ -30,5 +30,3 @@ Resized and converted to WebP. Adapted images keep their original license.
 
 - **Inter**, loaded from Google Fonts, is licensed under the
   [SIL Open Font License 1.1](https://openfontlicense.org/). Apple devices use the system font.
-- The **Google "G" logo** in the "Continue with Google" button is a trademark of Google LLC,
-  used as described in Google’s sign-in branding guidelines.

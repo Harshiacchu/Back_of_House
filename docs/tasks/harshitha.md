@@ -10,7 +10,7 @@ Estimate: **~31 h** (Ayush: ~30 h). Tick tasks here as you finish them.
 | H-0  | Repo scaffold, ESLint/Prettier, CI, CODEOWNERS                                                               | 3 h  | ✅ Done                              |
 | H-1  | Auth: Passport local, sessions in MongoDB, register/login/logout/me, `ProtectedRoute`                        | 3 h  | ✅ Done                              |
 | H-2  | Intro page + design system + shared components                                                               | 4 h  | ✅ Done                              |
-| H-2b | Email sign-up with 6-digit verification + Continue with Google (no new libraries)                            | 3 h  | ✅ Done                              |
+| H-2b | Email sign-up with 6-digit verification code (no new libraries)                                              | 3 h  | ✅ Done                              |
 | H-3  | Seed script: Analyze Boston API → `restaurants` + `inspections` (2–3k restaurants)                           | 4 h  | ✅ Done                              |
 | H-4  | Violation decoding table + severity score + trajectory                                                       | 4 h  | ✅ Done                              |
 | H-5  | `GET /api/restaurants` (search, neighborhood, trajectory, paging) + `/neighborhoods`                         | 3 h  | ✅ Done                              |
