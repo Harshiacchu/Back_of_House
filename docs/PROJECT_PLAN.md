@@ -68,15 +68,15 @@ Frontend routes: `/` intro (kitchen door) · `/restaurants` · `/restaurants/:id
 
 ## 3. Data model
 
-| Collection    | Owner | Key fields                                                                                                                                                              | CRUD          |
-| ------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `users`       | H     | `email` (unique, lowercase), `displayName`, `passwordHash` (null for Google-only), `googleId`, `emailVerified`, `verification{ codeHash, expiresAt, sentAt, attempts }` | C R U         |
-| `restaurants` | H     | `licenseNo` (unique), `name`, `address`, `neighborhood`, `zip`, `summary{ severityScore, trajectory, lastInspectionDate, lastResult }`                                  | R (seeded)    |
-| `inspections` | H     | `restaurantId`, `date`, `result`, `severityScore`, `violations[{ code, level, plain, description, category, comments }]`                                                | R (seeded)    |
-| `visits`      | H     | `userId`, `restaurantId`, `visitDate`, `dish`, `rating` 1–5, `notes`, timestamps                                                                                        | **full CRUD** |
-| `polls`       | A     | `creatorId`, `creatorName`, `title`, `restaurantIds[]`, `votes[{ userId, restaurantId, votedAt }]`, timestamps                                                          | **full CRUD** |
-| `spots`       | A     | `userId`, `name`, `description`, `items[{ restaurantId, note, addedAt }]`, timestamps                                                                                   | **full CRUD** |
-| `sessions`    | n/a   | managed by connect-mongo                                                                                                                                                | n/a           |
+| Collection    | Owner | Key fields                                                                                                                             | CRUD          |
+| ------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `users`       | H     | `email` (unique, lowercase), `displayName`, `passwordHash`, `emailVerified`, `verification{ codeHash, expiresAt, sentAt, attempts }`   | C R U         |
+| `restaurants` | H     | `licenseNo` (unique), `name`, `address`, `neighborhood`, `zip`, `summary{ severityScore, trajectory, lastInspectionDate, lastResult }` | R (seeded)    |
+| `inspections` | H     | `restaurantId`, `date`, `result`, `severityScore`, `violations[{ code, level, plain, description, category, comments }]`               | R (seeded)    |
+| `visits`      | H     | `userId`, `restaurantId`, `visitDate`, `dish`, `rating` 1–5, `notes`, timestamps                                                       | **full CRUD** |
+| `polls`       | A     | `creatorId`, `creatorName`, `title`, `restaurantIds[]`, `votes[{ userId, restaurantId, votedAt }]`, timestamps                         | **full CRUD** |
+| `spots`       | A     | `userId`, `name`, `description`, `items[{ restaurantId, note, addedAt }]`, timestamps                                                  | **full CRUD** |
+| `sessions`    | n/a   | managed by connect-mongo                                                                                                               | n/a           |
 
 - `restaurants.summary` is precomputed by the seed, so lists and comparisons need no joins.
 - Violation `level`: `Minor` | `Moderate` | `Serious` (from the dataset's `*` / `**` / `***`).
@@ -107,14 +107,13 @@ Errors are always `{ error, details? }` with 400 / 401 / 403 / 404 / 409 / 500.
 
 | Method             | Path                                                           | Auth | Owner | Response                                                                                                                                          |
 | ------------------ | -------------------------------------------------------------- | ---- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET                | `/api/auth/providers`                                          | –    | H     | `{ google, emailDelivery }`                                                                                                                       |
+| GET                | `/api/auth/providers`                                          | –    | H     | `{ emailDelivery }`                                                                                                                               |
 | POST               | `/api/auth/register`                                           | –    | H     | `{ displayName, email, password }` → 202 `{ email, verificationRequired }` (emails a 6-digit code)                                                |
 | POST               | `/api/auth/verify`                                             | –    | H     | `{ email, code }` → `{ user }` (signs in)                                                                                                         |
 | POST               | `/api/auth/resend`                                             | –    | H     | `{ email }` → `{ ok }` (60 s cooldown)                                                                                                            |
 | POST               | `/api/auth/login`                                              | –    | H     | `{ email, password }` → `{ user }`; 403 `{ verificationRequired }` if unverified                                                                  |
 | POST               | `/api/auth/logout`                                             | ✓    | H     | 204                                                                                                                                               |
 | GET                | `/api/auth/me`                                                 | –    | H     | `{ user \| null }`                                                                                                                                |
-| GET                | `/api/auth/google?next=`                                       | –    | H     | Redirects to Google; callback signs in and redirects to `next`                                                                                    |
 | GET                | `/api/restaurants?q&neighborhood&trajectory&sort&cursor&limit` | –    | H     | `{ items, total, nextCursor }` (cursor pagination; `total` on the first page only)                                                                |
 | GET                | `/api/restaurants/suggest?q=`                                  | –    | H     | `{ suggestions: [{ _id, name, neighborhood, summary }] }` (autocomplete)                                                                          |
 | GET                | `/api/restaurants/heatmap`                                     | –    | H     | `{ hoods, points: [[lng, lat, hood]], quarters: [{ label, cells: [point, score, …] }] }` (Kitchen Weather dot map; built once per server process) |

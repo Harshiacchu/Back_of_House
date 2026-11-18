@@ -18,12 +18,6 @@ export const env = Object.freeze({
   mongoUri: required('MONGODB_URI'),
   dbName: process.env.DB_NAME || 'back_of_house',
   sessionSecret: required('SESSION_SECRET'),
-  // Public URL of the site (where the browser is). Used for the Google redirect URI.
-  appUrl: (process.env.APP_URL || 'http://localhost:5173').replace(/\/$/, ''),
-  google: {
-    clientId: optional('GOOGLE_CLIENT_ID'),
-    clientSecret: optional('GOOGLE_CLIENT_SECRET'),
-  },
   mail: {
     brevoApiKey: optional('BREVO_API_KEY'),
     from: optional('MAIL_FROM'),
@@ -31,5 +25,4 @@ export const env = Object.freeze({
   },
 });
 
-export const isGoogleEnabled = Boolean(env.google.clientId && env.google.clientSecret);
 export const isMailEnabled = Boolean(env.mail.brevoApiKey && env.mail.from);

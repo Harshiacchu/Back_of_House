@@ -4,14 +4,7 @@ import { getDb } from '../../db/connection.js';
 import { COLLECTIONS } from '../../db/collections.js';
 
 export const usersIndexes = {
-  [COLLECTIONS.users]: [
-    { key: { email: 1 }, unique: true },
-    {
-      key: { googleId: 1 },
-      unique: true,
-      partialFilterExpression: { googleId: { $type: 'string' } },
-    },
-  ],
+  [COLLECTIONS.users]: [{ key: { email: 1 }, unique: true }],
 };
 
 const collection = () => getDb().collection(COLLECTIONS.users);
@@ -32,17 +25,12 @@ export function findById(id) {
   return collection().findOne({ _id: new ObjectId(id) });
 }
 
-export function findByGoogleId(googleId) {
-  return collection().findOne({ googleId });
-}
-
 export async function createUser(fields) {
   const now = new Date();
   const doc = {
     email: normalizeEmail(fields.email),
     displayName: fields.displayName.trim(),
-    passwordHash: fields.passwordHash ?? null,
-    googleId: fields.googleId ?? null,
+    passwordHash: fields.passwordHash,
     emailVerified: Boolean(fields.emailVerified),
     verification: fields.verification ?? null,
     createdAt: now,

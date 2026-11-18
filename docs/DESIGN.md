@@ -85,8 +85,7 @@ The product-page intro: what Back of House does and where to start.
 
 ### Sign in and sign up
 
-Email and password, or Continue with Google. A new account gets a 6-digit code by email before
-its first sign-in.
+Email and password. A new account gets a 6-digit code by email before its first sign-in.
 
 ![Sign in](mockups/login.png)
 

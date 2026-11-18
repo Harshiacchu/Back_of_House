@@ -8,10 +8,7 @@ passport.use(
   new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
     try {
       const user = await findByEmail(email);
-      if (user && !user.passwordHash) {
-        return done(null, false, { message: 'This account uses Google. Continue with Google.' });
-      }
-      const ok = user && (await bcrypt.compare(password, user.passwordHash));
+      const ok = user?.passwordHash && (await bcrypt.compare(password, user.passwordHash));
       if (!ok) return done(null, false, { message: 'Incorrect email or password' });
       if (!user.emailVerified) {
         return done(null, false, { message: 'Verify your email first', unverified: user });

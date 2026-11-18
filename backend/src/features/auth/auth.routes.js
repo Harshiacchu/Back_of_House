@@ -1,11 +1,10 @@
 import bcrypt from 'bcryptjs';
 import { Router } from 'express';
 
-import { parseEmailOnly, parseRegister, parseVerify, safeNext } from './auth.validation.js';
-import { authorizationUrl, newState, userFromGoogleCode } from './google.js';
+import { parseEmailOnly, parseRegister, parseVerify } from './auth.validation.js';
 import { createUser, findByEmail, toPublicUser, updateUser } from './users.repository.js';
 import { checkVerificationCode, sendVerificationCode } from './verification.js';
-import { isGoogleEnabled, isMailEnabled } from '../../config/env.js';
+import { isMailEnabled } from '../../config/env.js';
 import passport from '../../config/passport.js';
 import { HttpError, conflict, unauthorized } from '../../lib/errors.js';
 
@@ -29,7 +28,7 @@ async function sendCodeUnlessRecent(user) {
 
 // Which sign-in options this server supports, so the UI can adapt.
 router.get('/providers', (_req, res) => {
-  res.json({ google: isGoogleEnabled, emailDelivery: isMailEnabled ? 'email' : 'console' });
+  res.json({ emailDelivery: isMailEnabled ? 'email' : 'console' });
 });
 
 // Create (or re-create, if never verified) an email account and send a code. No login yet.
@@ -105,30 +104,6 @@ router.post('/logout', (req, res, next) => {
 // Returns { user: null } when logged out (not a 401) so the app can boot quietly.
 router.get('/me', (req, res) => {
   res.json({ user: req.user ?? null });
-});
-
-// ---- Google
-router.get('/google', (req, res) => {
-  if (!isGoogleEnabled) return res.redirect('/login?error=google-unavailable');
-  const state = newState();
-  req.session.oauth = { state, next: safeNext(req.query.next) };
-  return req.session.save(() => res.redirect(authorizationUrl(state)));
-});
-
-router.get('/google/callback', async (req, res) => {
-  const saved = req.session.oauth;
-  delete req.session.oauth;
-  if (!saved || req.query.state !== saved.state || typeof req.query.code !== 'string') {
-    return res.redirect('/login?error=google');
-  }
-  try {
-    const user = await userFromGoogleCode(req.query.code);
-    await logIn(req, toPublicUser(user));
-    return res.redirect(saved.next);
-  } catch (err) {
-    console.error('Google sign-in failed:', err.message);
-    return res.redirect('/login?error=google');
-  }
 });
 
 export default router;
