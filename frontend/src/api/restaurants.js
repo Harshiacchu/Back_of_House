@@ -16,4 +16,11 @@ export const getHeatmap = (signal) => request('/restaurants/heatmap', { signal }
 export const getNeighborhoods = (signal) => request('/restaurants/neighborhoods', { signal });
 
 // GET /api/restaurants/:id -> { restaurant, inspections: [inspection] } (newest first)
-export const getRestaurant = (id, signal) => request(`/restaurants/${id}`, { signal });
+export const getRestaurant = (id, signal) => {
+  if (id == null || String(id).trim() === '') {
+    return Promise.reject(
+      new Error('Please provide a valid restaurant ID.')
+    );
+  }
+  return request(`/restaurants/${id}`, { signal });
+};
