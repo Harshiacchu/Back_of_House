@@ -43,4 +43,5 @@ export default function App() {
   );
 }
 
+// Takes no props.
 App.propTypes = {};

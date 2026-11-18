@@ -119,4 +119,5 @@ export default function VerifyPage() {
   );
 }
 
+// Takes no props.
 VerifyPage.propTypes = {};

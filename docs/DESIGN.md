@@ -55,15 +55,69 @@ over time.
 
 ## 4. Design mockups
 
-Mockups live in [`docs/mockups/`](mockups/).
+Mockups live in [`docs/mockups/`](mockups/). They are captured from the working app, using demo
+accounts for the three personas, so they show the design as built: system type, near-black text
+on white and light grey, one blue for actions, and colour only where it carries meaning
+(green / orange / red for severity, arrows for trajectory).
 
-| Screen                | Mockup                                 |
-| --------------------- | -------------------------------------- |
-| Home + instructions   | _todo_ `mockups/home.png`              |
-| Kitchen Reports       | _todo_ `mockups/restaurants.png`       |
-| Kitchen Report detail | _todo_ `mockups/restaurant-detail.png` |
-| Visit Log             | _todo_ `mockups/visits.png`            |
-| Group Picks           | _todo_ `mockups/polls.png`             |
-| Poll + comparison     | _todo_ `mockups/poll-detail.png`       |
-| My Spots              | _todo_ `mockups/spots.png`             |
-| Mobile                | _todo_ `mockups/mobile.png`            |
+| Screen                | Persona | Mockup                                                   |
+| --------------------- | ------- | -------------------------------------------------------- |
+| Home + instructions   | Anyone  | [`home.png`](mockups/home.png)                           |
+| Kitchen Reports       | Priya   | [`restaurants.png`](mockups/restaurants.png)             |
+| Kitchen Report detail | Priya   | [`restaurant-detail.png`](mockups/restaurant-detail.png) |
+| Visit Log             | Dana    | [`visits.png`](mockups/visits.png)                       |
+| Group Picks           | Marcus  | [`polls.png`](mockups/polls.png)                         |
+| Poll + comparison     | Priya   | [`poll-detail.png`](mockups/poll-detail.png)             |
+| My Spots              | Dana    | [`spots.png`](mockups/spots.png)                         |
+| Mobile                | Priya   | [`mobile.png`](mockups/mobile.png)                       |
+
+### Home + instructions
+
+The product-page intro: what Back of House does and where to start.
+
+![Home page](mockups/home.png)
+
+### Kitchen Reports (stories 1 and 2)
+
+Priya searches by name and filters by neighborhood and trajectory. Each card shows the headline
+severity score and whether the kitchen is Improving, Steady or Slipping.
+
+![Kitchen Reports search](mockups/restaurants.png)
+
+Opening a restaurant shows its severity meter, the trajectory chart of recent inspections, and
+every violation decoded into plain English.
+
+![Kitchen Report detail](mockups/restaurant-detail.png)
+
+### Visit Log (story 3)
+
+Dana's meals, each paired with what the kitchen's inspection record looked like on that day.
+Add, edit and delete visits from this page.
+
+![Visit Log](mockups/visits.png)
+
+### Group Picks (stories 4 and 5)
+
+Marcus's polls: the ones he created (with Edit and Delete) and the ones friends shared that he
+voted in (view and vote only).
+
+![Group Picks list](mockups/polls.png)
+
+The shared poll page. Each candidate's severity, trend and last inspection sit side by side,
+with live vote counts, who voted for what, and "Most votes" / "Cleanest kitchen" highlights.
+The blue outline marks the viewer's own vote, which they can change any time.
+
+![Poll with side-by-side comparison](mockups/poll-detail.png)
+
+### My Spots (story 6)
+
+Dana's personal lists with a note on each restaurant and today's kitchen score next to it.
+Create, edit (rename, add, remove, change notes) and delete lists.
+
+![My Spots](mockups/spots.png)
+
+### Mobile
+
+Every page is responsive. On a phone the comparison columns stack into one column.
+
+<img src="mockups/mobile.png" alt="Poll page on a phone" width="320">

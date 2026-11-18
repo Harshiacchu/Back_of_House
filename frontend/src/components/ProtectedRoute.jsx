@@ -13,4 +13,5 @@ export default function ProtectedRoute() {
   return <Outlet />;
 }
 
+// Takes no props.
 ProtectedRoute.propTypes = {};

@@ -27,7 +27,7 @@
 .code-input__digit:focus {
   border-color: var(--color-accent);
   outline: none;
-  box-shadow: 0 0 0 4px rgb(0 113 227 / 15%);
+  box-shadow: 0 0 0 4px var(--color-focus-ring);
 }
 
 .code-input.is-invalid .code-input__digit {

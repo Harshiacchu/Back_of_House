@@ -85,4 +85,5 @@ export default function SpotsPage() {
   );
 }
 
+// Takes no props.
 SpotsPage.propTypes = {};

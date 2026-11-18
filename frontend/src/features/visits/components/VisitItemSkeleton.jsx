@@ -21,4 +21,5 @@ export default function VisitItemSkeleton() {
   );
 }
 
+// Takes no props.
 VisitItemSkeleton.propTypes = {};

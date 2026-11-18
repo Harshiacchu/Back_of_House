@@ -63,4 +63,5 @@ export default function SeverityCard() {
   );
 }
 
+// Takes no props.
 SeverityCard.propTypes = {};

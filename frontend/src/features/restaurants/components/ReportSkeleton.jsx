@@ -26,4 +26,5 @@ export default function ReportSkeleton() {
   );
 }
 
+// Takes no props.
 ReportSkeleton.propTypes = {};

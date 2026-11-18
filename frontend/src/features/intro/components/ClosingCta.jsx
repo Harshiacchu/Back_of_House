@@ -38,4 +38,5 @@ export default function ClosingCta() {
   );
 }
 
+// Takes no props.
 ClosingCta.propTypes = {};

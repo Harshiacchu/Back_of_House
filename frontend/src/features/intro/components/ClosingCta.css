@@ -1,9 +1,9 @@
 .closing {
   padding: var(--section-pad) 22px;
   background:
-    linear-gradient(rgb(0 0 0 / 62%), rgb(0 0 0 / 78%)),
+    linear-gradient(var(--color-scrim), var(--color-scrim-strong)),
     var(--closing-photo) center / cover no-repeat;
-  color: #ffffff;
+  color: var(--color-on-dark);
 }
 
 .closing__inner {
@@ -38,14 +38,14 @@
   align-content: start;
   gap: 6px;
   padding-top: var(--space-3);
-  border-top: 1px solid rgb(255 255 255 / 30%);
-  color: rgb(255 255 255 / 82%);
+  border-top: 1px solid var(--color-hairline-dark);
+  color: var(--color-on-dark-secondary);
 }
 
 .closing__number {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-on-dark);
 }
 
 .closing__cta {

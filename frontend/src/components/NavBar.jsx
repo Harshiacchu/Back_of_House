@@ -57,4 +57,5 @@ export default function NavBar() {
   );
 }
 
+// Takes no props.
 NavBar.propTypes = {};

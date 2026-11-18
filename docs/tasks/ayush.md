@@ -18,7 +18,7 @@ in the navbar. Your pages are empty shells. See `docs/PROJECT_PLAN.md` §1a for 
 | A-5 | My Spots CRUD API (lists with items + notes)                                                                        | 3 h  | ⬜     |
 | A-6 | `SpotsPage` + `SpotListForm` + `SpotListCard`                                                                       | 4 h  | ⬜     |
 | A-7 | Deploy to Render (`render.yaml`), production env vars, run seed on prod DB                                          | 2 h  | ⬜     |
-| A-8 | Mockups for every screen in `docs/mockups/`; finish `docs/DESIGN.md`                                                | 3 h  | ⬜     |
+| A-8 | Mockups for every screen in `docs/mockups/`; finish `docs/DESIGN.md`                                                | 3 h  | ✅     |
 
 ## Shared final tasks (my half)
 

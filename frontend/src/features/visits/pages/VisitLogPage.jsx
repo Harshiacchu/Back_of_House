@@ -136,4 +136,5 @@ export default function VisitLogPage() {
   );
 }
 
+// Takes no props.
 VisitLogPage.propTypes = {};

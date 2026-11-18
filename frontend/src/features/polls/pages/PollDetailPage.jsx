@@ -74,4 +74,5 @@ export default function PollDetailPage() {
   );
 }
 
+// Takes no props.
 PollDetailPage.propTypes = {};

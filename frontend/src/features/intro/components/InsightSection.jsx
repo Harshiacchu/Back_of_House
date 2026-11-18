@@ -29,4 +29,5 @@ export default function InsightSection() {
   );
 }
 
+// Takes no props.
 InsightSection.propTypes = {};

@@ -91,4 +91,5 @@ export default function RestaurantDetailPage() {
   );
 }
 
+// Takes no props.
 RestaurantDetailPage.propTypes = {};

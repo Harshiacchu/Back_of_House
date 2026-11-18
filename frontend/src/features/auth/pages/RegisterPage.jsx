@@ -90,4 +90,5 @@ export default function RegisterPage() {
   );
 }
 
+// Takes no props.
 RegisterPage.propTypes = {};

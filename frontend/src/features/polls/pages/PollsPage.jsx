@@ -95,4 +95,5 @@ export default function PollsPage() {
   );
 }
 
+// Takes no props.
 PollsPage.propTypes = {};

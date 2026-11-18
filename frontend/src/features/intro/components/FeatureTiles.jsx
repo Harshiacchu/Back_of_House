@@ -66,4 +66,5 @@ export default function FeatureTiles() {
   );
 }
 
+// Takes no props.
 FeatureTiles.propTypes = {};

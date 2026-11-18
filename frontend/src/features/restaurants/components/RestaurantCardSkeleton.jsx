@@ -23,4 +23,5 @@ export default function RestaurantCardSkeleton() {
   );
 }
 
+// Takes no props.
 RestaurantCardSkeleton.propTypes = {};

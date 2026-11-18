@@ -8,4 +8,5 @@ export default function AuthDivider() {
   );
 }
 
+// Takes no props.
 AuthDivider.propTypes = {};

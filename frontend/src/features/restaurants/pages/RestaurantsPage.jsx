@@ -165,4 +165,5 @@ export default function RestaurantsPage() {
   );
 }
 
+// Takes no props.
 RestaurantsPage.propTypes = {};

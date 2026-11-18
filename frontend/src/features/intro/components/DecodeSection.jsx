@@ -45,4 +45,5 @@ export default function DecodeSection() {
   );
 }
 
+// Takes no props.
 DecodeSection.propTypes = {};

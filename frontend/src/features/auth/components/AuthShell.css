@@ -9,9 +9,9 @@
   align-items: flex-end;
   padding: clamp(32px, 5vw, 64px);
   background:
-    linear-gradient(180deg, rgb(0 0 0 / 5%) 30%, rgb(0 0 0 / 80%) 100%),
+    linear-gradient(180deg, var(--color-scrim-soft) 30%, var(--color-scrim-strong) 100%),
     var(--auth-photo) center / cover no-repeat;
-  color: #ffffff;
+  color: var(--color-on-dark);
 }
 
 .auth-shell__quote {
@@ -23,7 +23,7 @@
 }
 
 .auth-shell__quote span {
-  color: rgb(255 255 255 / 78%);
+  color: var(--color-on-dark-secondary);
 }
 
 .auth-shell__panel {

@@ -76,4 +76,5 @@ export default function LoginPage() {
   );
 }
 
+// Takes no props.
 LoginPage.propTypes = {};

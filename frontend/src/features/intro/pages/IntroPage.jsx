@@ -49,4 +49,5 @@ export default function IntroPage() {
   );
 }
 
+// Takes no props.
 IntroPage.propTypes = {};
