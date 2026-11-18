@@ -20,6 +20,7 @@ Estimate: **~31 h** (Ayush: ~30 h). Tick tasks here as you finish them.
 | H-9  | Kitchen Reports v2: autocomplete, cursor pagination, sort, 5/10/25/50 per page, cards                        | 3 h  | Built; seeded and browser-checked ✅ |
 | H-10 | Share cards (kitchen report + year recap), skeleton loading on my pages                                      | 2 h  | Done: both cards browser-tested ✅   |
 | H-11 | Kitchen Weather: canvas dot map of concerns by quarter, scrubber + play, hover details, neighborhood picking | 3 h  | Built and browser-checked ✅         |
+| H-12 | Visit Log v2: stats row, Taste × Kitchen map, quadrant filter, month grouping, scroll-to-top on navigation   | 2 h  | Built; lint + build clean ✅         |
 
 Seeded: 3,334 restaurants and 34,495 inspections (Boston, active restaurants, since 2023).
 Re-run with `npm run seed`, or `npm run seed -- --refresh` to download fresh data.
@@ -39,12 +40,11 @@ _(Write here when you need something changed in Ayush's files. He makes the chan
 
 - README: in the License section, add “Photos, data and fonts are under their own licenses: see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).”
 - Deployment (A-7): Harshitha is deploying to Render herself, so A-7 comes off your list.
+- **Mockups for my screens (A-8 follow-up), done with your OK:** `visits.png` predated Visit Log
+  v2, and Sign in, Sign up, Email code and Kitchen Weather had no mockup. I added them at your
+  size (1280×860 at 1.25×) with matching DESIGN.md rows and captions. Please review in my PR.
 - **Rubric gaps in your area (please fix before the freeze):**
-  - `docs/mockups/` is empty (A-8): add a mockup or screenshot for every screen.
-  - README (F-A1): add the live link https://back-of-house.onrender.com/, a screenshot and the
-    video link.
-  - `PollsPage.jsx`, `PollDetailPage.jsx`, `SpotsPage.jsx` take no props but declare no
-    `propTypes`; every other component now has `Name.propTypes = {};`. Add the same.
+  - README (F-A1): add the live link https://back-of-house.onrender.com/ and the video link.
   - `polls/components/VoteButton.css` hard-codes `#ffffff`; use `var(--color-on-dark)`.
   - Tick A-1 to A-6 in `docs/tasks/ayush.md` (all merged and tested end to end).
 - **To balance the hours, please take over these three (add them to `docs/tasks/ayush.md`):**

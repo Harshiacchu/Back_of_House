@@ -1,12 +1,14 @@
+/* The status line floats below the button so it never changes the button row's height. */
 .share-button {
+  position: relative;
   display: inline-flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--space-1);
 }
 
 .share-button__status {
-  min-height: 1.2em;
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  right: 0;
+  white-space: nowrap;
   font-size: 0.8rem;
   color: var(--color-text-secondary);
 }

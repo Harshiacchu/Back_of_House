@@ -47,6 +47,13 @@
   /* Star ratings */
   --color-rating: #bf8b2e;
 
+  /* Taste map (Visit Log): blue-grey night panel */
+  --color-map-bg: #18212f;
+  --color-map-bg-deep: #0f1622;
+  --color-map-line: rgb(255 255 255 / 14%);
+  --color-map-text: rgb(226 234 245 / 72%);
+  --color-map-zone: rgb(0 113 227 / 22%);
+
   /* Trajectory */
   --color-trend-improving: #1f7a37;
   --color-trend-steady: #6e6e73;

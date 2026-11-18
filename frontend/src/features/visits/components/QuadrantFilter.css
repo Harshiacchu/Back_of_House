@@ -1,0 +1,51 @@
+.quadrant-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.quadrant-filter__option {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 36px;
+  padding: 0 6px 0 14px;
+  border: 1px solid transparent;
+  border-radius: 980px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.quadrant-filter__option:hover {
+  border-color: var(--color-border);
+}
+
+.quadrant-filter__option[aria-pressed='true'] {
+  background: var(--color-map-bg);
+  color: var(--color-on-dark);
+}
+
+.quadrant-filter__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 980px;
+  background: var(--color-bg-alt);
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.quadrant-filter__option[aria-pressed='true'] .quadrant-filter__count {
+  background: var(--color-hairline-dark);
+  color: var(--color-on-dark);
+}
