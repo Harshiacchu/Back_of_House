@@ -75,3 +75,5 @@ export default function LoginPage() {
     </AuthShell>
   );
 }
+
+LoginPage.propTypes = {};

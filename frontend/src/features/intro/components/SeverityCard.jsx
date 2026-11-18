@@ -62,3 +62,5 @@ export default function SeverityCard() {
     </article>
   );
 }
+
+SeverityCard.propTypes = {};

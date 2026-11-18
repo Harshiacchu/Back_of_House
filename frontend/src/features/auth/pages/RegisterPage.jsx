@@ -89,3 +89,5 @@ export default function RegisterPage() {
     </AuthShell>
   );
 }
+
+RegisterPage.propTypes = {};

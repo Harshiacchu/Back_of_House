@@ -72,3 +72,5 @@ export default function RestaurantDetailPage() {
     </article>
   );
 }
+
+RestaurantDetailPage.propTypes = {};
