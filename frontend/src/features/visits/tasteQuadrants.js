@@ -27,6 +27,7 @@ export function quadrantOf(visit) {
 // Piecewise scales put the quadrant lines exactly in the middle of the map.
 // x: 1 star at the left edge, 5 stars at the right, the "loved" line (3.5) in the centre.
 function xFor(rating) {
+  rating = Math.max(1, Math.min(rating, 5));
   const mid = LOVED_FROM - 0.5;
   return rating <= mid
     ? 8 + ((rating - 1) / (mid - 1)) * 42
