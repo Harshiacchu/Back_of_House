@@ -28,3 +28,5 @@ export default function InsightSection() {
     </section>
   );
 }
+
+InsightSection.propTypes = {};

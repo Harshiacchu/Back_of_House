@@ -118,3 +118,5 @@ export default function VerifyPage() {
     </AuthShell>
   );
 }
+
+VerifyPage.propTypes = {};

@@ -135,3 +135,5 @@ export default function VisitLogPage() {
     </section>
   );
 }
+
+VisitLogPage.propTypes = {};

@@ -22,3 +22,5 @@ export default function RestaurantCardSkeleton() {
     </div>
   );
 }
+
+RestaurantCardSkeleton.propTypes = {};

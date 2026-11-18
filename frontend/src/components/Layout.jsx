@@ -31,3 +31,5 @@ export default function Layout() {
     </div>
   );
 }
+
+Layout.propTypes = {};

@@ -94,3 +94,5 @@ export default function PollsPage() {
     </section>
   );
 }
+
+PollsPage.propTypes = {};

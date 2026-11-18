@@ -76,3 +76,5 @@ export default function CardGuide() {
     </details>
   );
 }
+
+CardGuide.propTypes = {};

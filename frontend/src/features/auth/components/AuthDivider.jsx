@@ -7,3 +7,5 @@ export default function AuthDivider() {
     </p>
   );
 }
+
+AuthDivider.propTypes = {};

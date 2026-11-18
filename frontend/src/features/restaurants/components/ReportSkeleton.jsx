@@ -25,3 +25,5 @@ export default function ReportSkeleton() {
     </div>
   );
 }
+
+ReportSkeleton.propTypes = {};

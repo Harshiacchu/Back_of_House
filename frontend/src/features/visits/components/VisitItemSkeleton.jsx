@@ -20,3 +20,5 @@ export default function VisitItemSkeleton() {
     </div>
   );
 }
+
+VisitItemSkeleton.propTypes = {};
