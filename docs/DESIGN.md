@@ -63,9 +63,15 @@ on white and light grey, one blue for actions, and colour only where it carries 
 | Screen                | Persona | Mockup                                                   |
 | --------------------- | ------- | -------------------------------------------------------- |
 | Home + instructions   | Anyone  | [`home.png`](mockups/home.png)                           |
+| Sign in               | Anyone  | [`login.png`](mockups/login.png)                         |
+| Sign up               | Anyone  | [`register.png`](mockups/register.png)                   |
+| Email code            | Anyone  | [`verify.png`](mockups/verify.png)                       |
 | Kitchen Reports       | Priya   | [`restaurants.png`](mockups/restaurants.png)             |
+| Kitchen Weather       | Priya   | [`kitchen-weather.png`](mockups/kitchen-weather.png)     |
 | Kitchen Report detail | Priya   | [`restaurant-detail.png`](mockups/restaurant-detail.png) |
 | Visit Log             | Dana    | [`visits.png`](mockups/visits.png)                       |
+| Taste × Kitchen map   | Dana    | [`visits-taste-map.png`](mockups/visits-taste-map.png)   |
+| Log a visit           | Dana    | [`visit-form.png`](mockups/visit-form.png)               |
 | Group Picks           | Marcus  | [`polls.png`](mockups/polls.png)                         |
 | Poll + comparison     | Priya   | [`poll-detail.png`](mockups/poll-detail.png)             |
 | My Spots              | Dana    | [`spots.png`](mockups/spots.png)                         |
@@ -77,12 +83,29 @@ The product-page intro: what Back of House does and where to start.
 
 ![Home page](mockups/home.png)
 
+### Sign in and sign up
+
+Email and password, or Continue with Google. A new account gets a 6-digit code by email before
+its first sign-in.
+
+![Sign in](mockups/login.png)
+
+![Sign up](mockups/register.png)
+
+![Email code](mockups/verify.png)
+
 ### Kitchen Reports (stories 1 and 2)
 
 Priya searches by name and filters by neighborhood and trajectory. Each card shows the headline
 severity score and whether the kitchen is Improving, Steady or Slipping.
 
 ![Kitchen Reports search](mockups/restaurants.png)
+
+Kitchen Weather, above the search: a dot map of Boston showing where inspectors found concerns
+each quarter since 2023. Press play to watch it change, or pick a neighborhood to list its
+kitchens below.
+
+![Kitchen Weather map](mockups/kitchen-weather.png)
 
 Opening a restaurant shows its severity meter, the trajectory chart of recent inspections, and
 every violation decoded into plain English.
@@ -91,10 +114,21 @@ every violation decoded into plain English.
 
 ### Visit Log (story 3)
 
-Dana's meals, each paired with what the kitchen's inspection record looked like on that day.
+Dana's meals, each paired with what the kitchen's inspection record looked like on that day,
+grouped by month. A stats row sums up the log, and "Share my 2026" turns it into a recap card.
 Add, edit and delete visits from this page.
 
 ![Visit Log](mockups/visits.png)
+
+The Taste × Kitchen map plots every meal by rating and kitchen score. Picking a dot or a corner
+(Keepers, Worth a second look, Clean but forgettable, Skip next time) filters the log and jumps
+to that visit.
+
+![Taste × Kitchen map](mockups/visits-taste-map.png)
+
+Logging a visit: pick the restaurant, then the date, dish, stars and notes.
+
+![Log a visit form](mockups/visit-form.png)
 
 ### Group Picks (stories 4 and 5)
 
